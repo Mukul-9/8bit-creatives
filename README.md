@@ -39,17 +39,20 @@ src/
 ## 🎯 Key Features
 
 ### Color System
+
 - **Cyan (#00A4E4)**: Primary color for text highlights
 - **Magenta (#EC008C)**: Glowing backdrops and atmospheric effects
 - **Yellow (#FFF200)**: Accent color used in gradients
 
 ### Components
+
 - **Reusable Buttons**: Primary and Secondary with glassmorphism effects
 - **Responsive Layout**: Mobile-optimized with smooth scrolling
 - **Interactive Elements**: Hover effects and animations
 - **Modern Typography**: Inter font family throughout
 
 ### Glassmorphism Effects
+
 - Backdrop blur filters
 - Semi-transparent backgrounds
 - Subtle glass borders
@@ -58,17 +61,20 @@ src/
 ## 🛠️ Installation & Setup
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/yourusername/8bit-creatives.git
 cd 8bit-creatives
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Start the development server:
+
 ```bash
 npm start
 ```
@@ -86,7 +92,7 @@ npm start
 ## 🎨 Color Usage Guidelines
 
 - **Text Highlights**: Use cyan-only gradients for emphasized text
-- **Backgrounds**: Magenta-only glows for atmospheric effects  
+- **Backgrounds**: Magenta-only glows for atmospheric effects
 - **Buttons**: All three colors (cyan, magenta, yellow) in gradients
 - **Glass Effects**: Consistent transparency and blur levels
 
