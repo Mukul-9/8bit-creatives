@@ -3,11 +3,12 @@ import styled from "styled-components";
 import colors from "../theme/colors";
 
 const PortfolioSection = styled.section`
-  background: ${colors.background};
+  background: transparent;
   color: ${colors.textPrimary};
   padding: 6rem 2rem;
   position: relative;
   overflow: hidden;
+  z-index: 1;
 
   &::before {
     content: "";
@@ -59,32 +60,6 @@ const Container = styled.div`
   z-index: 2;
 `;
 
-const Badge = styled.div`
-  background: ${colors.glass.card};
-  border: 1px solid ${colors.glass.border};
-  border-radius: 20px;
-  padding: 0.4rem 1rem;
-  margin-bottom: 2rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: ${colors.textSecondary};
-  font-size: 0.85rem;
-  font-weight: 500;
-  text-align: center;
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-  backdrop-filter: ${colors.blur.small};
-  -webkit-backdrop-filter: ${colors.blur.small};
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-
-  &::before {
-    content: "⚡";
-    font-size: 0.9rem;
-  }
-`;
-
 const SectionTitle = styled.h2`
   font-size: 3rem;
   font-weight: 700;
@@ -122,116 +97,77 @@ const SectionSubtitle = styled.p`
 `;
 
 const ServicesGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
   gap: 2rem;
   margin-bottom: 4rem;
+  flex-wrap: wrap;
 
   @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: center;
     gap: 1.5rem;
   }
 `;
 
 const ServiceCard = styled.div`
-  background: ${colors.glass.card};
-  border: 1px solid ${colors.glass.borderLight};
-  border-radius: 16px;
-  padding: 2rem;
-  transition: all 0.3s ease;
+  border-radius: 20px;
+  padding: 2.5rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  backdrop-filter: ${colors.blur.medium};
-  -webkit-backdrop-filter: ${colors.blur.medium};
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  width: 300px;
+  min-height: 200px;
+  flex: 1;
+  max-width: 350px;
 
   &:hover {
-    border-color: ${colors.glass.border};
-    transform: translateY(-6px);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
-    background: ${colors.glass.buttonHover};
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    z-index: 10;
   }
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: ${colors.gradients.primary};
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-  }
-
-  &:hover::before {
-    transform: scaleX(1);
-    background: ${(props) => {
-      if (props.colorType === "yellow") return colors.gradients.primaryReverse;
-      if (props.colorType === "magenta") return colors.gradients.diagonal;
-      if (props.colorType === "cyan") return colors.gradients.primary;
-      return colors.gradients.rainbow;
-    }};
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 350px;
+    flex: none;
   }
 `;
 
 const ServiceIcon = styled.div`
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   background: ${(props) => {
-    if (props.colorType === "yellow") return colors.glass.yellow;
-    if (props.colorType === "magenta") return colors.glass.magenta;
-    if (props.colorType === "cyan") return colors.glass.cyan;
-    return colors.glass.primary;
+    if (props.colorType === "yellow") return "rgba(255, 242, 0, 0.1)";
+    if (props.colorType === "magenta") return "rgba(236, 0, 140, 0.1)";
+    if (props.colorType === "cyan") return "rgba(0, 164, 228, 0.1)";
+    return "rgba(0, 164, 228, 0.1)";
   }};
-  border: 1px solid ${colors.glass.borderLight};
-  border-radius: 12px;
+  border: 1px solid
+    ${(props) => {
+      if (props.colorType === "yellow") return "rgba(255, 242, 0, 0.3)";
+      if (props.colorType === "magenta") return "rgba(236, 0, 140, 0.3)";
+      if (props.colorType === "cyan") return "rgba(0, 164, 228, 0.3)";
+      return "rgba(0, 164, 228, 0.3)";
+    }};
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1.5rem;
-  font-size: 1.5rem;
-  transition: all 0.3s ease;
+  font-size: 1.8rem;
+  transition: all 0.4s ease;
   backdrop-filter: ${colors.blur.small};
   -webkit-backdrop-filter: ${colors.blur.small};
-
-  &:hover {
-    background: ${(props) => {
-      if (props.colorType === "yellow") return colors.yellow;
-      if (props.colorType === "magenta") return colors.magenta;
-      if (props.colorType === "cyan") return colors.cyan;
-      return colors.primary;
-    }};
-    transform: scale(1.1);
-  }
-`;
-
-const ServiceTitle = styled.h3`
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: ${colors.textPrimary};
-  font-family: "Inter", sans-serif;
-`;
-
-const ServiceDescription = styled.p`
-  font-size: 0.95rem;
-  color: ${colors.textSecondary};
-  line-height: 1.6;
-  font-family: "Inter", sans-serif;
-`;
-
-const StatsSection = styled.div`
-  background: ${colors.glass.card};
-  border: 1px solid ${colors.glass.border};
-  border-radius: 20px;
-  padding: 3rem 2rem;
-  text-align: center;
   position: relative;
   overflow: hidden;
-  backdrop-filter: ${colors.blur.large};
-  -webkit-backdrop-filter: ${colors.blur.large};
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
 
   &::before {
     content: "";
@@ -240,19 +176,101 @@ const StatsSection = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background: ${colors.gradients.glow};
-    opacity: 0.05;
+    background: ${(props) => {
+      if (props.colorType === "yellow")
+        return "radial-gradient(circle, rgba(255, 242, 0, 0.2) 0%, transparent 70%)";
+      if (props.colorType === "magenta")
+        return "radial-gradient(circle, rgba(236, 0, 140, 0.2) 0%, transparent 70%)";
+      if (props.colorType === "cyan")
+        return "radial-gradient(circle, rgba(0, 164, 228, 0.2) 0%, transparent 70%)";
+      return "radial-gradient(circle, rgba(0, 164, 228, 0.2) 0%, transparent 70%)";
+    }};
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  &:hover {
+    transform: scale(1.1) rotate(5deg);
+    border-color: ${(props) => {
+      if (props.colorType === "yellow") return "rgba(255, 242, 0, 0.6)";
+      if (props.colorType === "magenta") return "rgba(236, 0, 140, 0.6)";
+      if (props.colorType === "cyan") return "rgba(0, 164, 228, 0.6)";
+      return "rgba(0, 164, 228, 0.6)";
+    }};
+
+    &::before {
+      opacity: 1;
+    }
+  }
+`;
+
+const ServiceTitle = styled.h3`
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: ${colors.textPrimary};
+  font-family: "Inter", sans-serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+`;
+
+const ServiceDescription = styled.p`
+  font-size: 1rem;
+  color: ${colors.textSecondary};
+  line-height: 1.6;
+  font-family: "Inter", sans-serif;
+  margin-bottom: 1.5rem;
+`;
+
+const StatsSection = styled.div`
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.2);
+
+    &::before {
+      background: linear-gradient(
+        135deg,
+        rgba(0, 164, 228, 0.08) 0%,
+        rgba(236, 0, 140, 0.05) 50%,
+        rgba(255, 242, 0, 0.03) 100%
+      );
+    }
+
+    &::after {
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(0, 164, 228, 0.5) 25%,
+        rgba(236, 0, 140, 0.5) 50%,
+        rgba(255, 242, 0, 0.5) 75%,
+        transparent 100%
+      );
+    }
   }
 `;
 
 const StatsTitle = styled.h3`
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.6rem;
+  font-weight: 700;
   margin-bottom: 1rem;
   color: ${colors.textPrimary};
   position: relative;
   z-index: 2;
   font-family: "Inter", sans-serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 `;
 
 const StatsGrid = styled.div`
@@ -293,6 +311,295 @@ const StatLabel = styled.div`
   font-family: "Inter", sans-serif;
 `;
 
+// Pinterest-style Image Gallery
+const ImageGallerySection = styled.div`
+  margin-top: 4rem;
+  position: relative;
+  z-index: 2;
+`;
+
+const GalleryTitle = styled.h3`
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: ${colors.textPrimary};
+  font-family: "Inter", sans-serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+  .highlight {
+    background: ${colors.gradients.textHighlight};
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+`;
+
+// Laptop Browser Window - Dark Theme with Glassmorphism
+const BrowserWindow = styled.div`
+  background: ${colors.glass.card};
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  margin: 2rem 0;
+  position: relative;
+`;
+
+const BrowserHeader = styled.div`
+  background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+  z-index: 2;
+`;
+
+const BrowserButtons = styled.div`
+  display: flex;
+  gap: 0.5rem;
+`;
+
+const BrowserButton = styled.div`
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: ${(props) => props.color};
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+`;
+
+const ViewAllButton = styled.button`
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    135deg,
+    rgba(30, 30, 30, 0.9) 0%,
+    rgba(40, 40, 40, 0.8) 100%
+  );
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: "Inter", sans-serif;
+  z-index: 20;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 164, 228, 0.1) 0%,
+      rgba(236, 0, 140, 0.05) 50%,
+      rgba(255, 242, 0, 0.03) 100%
+    );
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    z-index: 1;
+    border-radius: 50px;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(0, 164, 228, 0.3) 25%,
+      rgba(236, 0, 140, 0.3) 50%,
+      rgba(255, 242, 0, 0.3) 75%,
+      transparent 100%
+    );
+    z-index: 2;
+    border-radius: 50px;
+  }
+
+  &:hover {
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    background: linear-gradient(
+      135deg,
+      rgba(35, 35, 35, 0.95) 0%,
+      rgba(45, 45, 45, 0.85) 100%
+    );
+
+    &::before {
+      opacity: 0.8;
+      background: linear-gradient(
+        90deg,
+        rgba(0, 164, 228, 0.15) 0%,
+        rgba(236, 0, 140, 0.08) 50%,
+        rgba(255, 242, 0, 0.05) 100%
+      );
+    }
+
+    &::after {
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(0, 164, 228, 0.5) 25%,
+        rgba(236, 0, 140, 0.5) 50%,
+        rgba(255, 242, 0, 0.5) 75%,
+        transparent 100%
+      );
+    }
+  }
+
+  &:active {
+    transform: translateX(-50%) translateY(0);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2),
+      0 0 0 1px rgba(255, 255, 255, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+`;
+
+const BrowserTitle = styled.div`
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  flex: 1;
+  text-align: center;
+  font-size: 0.9rem;
+  color: ${colors.textSecondary};
+  font-family: "Inter", sans-serif;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+`;
+
+const BrowserContent = styled.div`
+  padding: 0;
+  background: ${colors.background};
+  height: auto;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+`;
+
+const PinterestMatrix = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 600px;
+  gap: 1rem;
+  padding: 1rem;
+
+  @media (max-width: 768px) {
+    grid-auto-rows: 500px;
+    gap: 0.8rem;
+    padding: 0.8rem;
+  }
+
+  @media (max-width: 480px) {
+    grid-auto-rows: 400px;
+    gap: 0.6rem;
+    padding: 0.6rem;
+  }
+`;
+
+// ViewAllButton removed - functionality moved to maximize button
+
+const ImageCard = styled.div`
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 100%;
+  background: rgba(30, 30, 30, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    z-index: 10;
+    }
+  }
+`;
+
+const ImageWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+`;
+
+const PortfolioImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  border-radius: 16px;
+
+  ${ImageCard}:hover & {
+    transform: scale(1.05);
+  }
+`;
+
+const ImageOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 60%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+
+  ${ImageCard}:hover & {
+    opacity: 1;
+  }
+`;
+
+const ImageTitle = styled.h4`
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+`;
+
 const services = [
   {
     icon: "🎨",
@@ -317,11 +624,105 @@ const services = [
   },
 ];
 
+// Portfolio images data - Import images from assets
+const portfolioImages = [
+  {
+    src: require("../assets/portfolio images/1975 press.jpg"),
+    title: "1975 Press Campaign",
+  },
+  {
+    src: require("../assets/portfolio images/boat.jpg"),
+    title: "Boat Photography",
+  },
+  {
+    src: require("../assets/portfolio images/chinese.jpg"),
+    title: "Chinese Cuisine Design",
+  },
+  {
+    src: require("../assets/portfolio images/christmas beer.png"),
+    title: "Christmas Beer Branding",
+  },
+  {
+    src: require("../assets/portfolio images/coffee.jpg"),
+    title: "Coffee Brand Design",
+  },
+  {
+    src: require("../assets/portfolio images/dogs 1.jpg"),
+    title: "Pet Photography Series",
+  },
+  {
+    src: require("../assets/portfolio images/dogs 2.jpg"),
+    title: "Dog Portrait Collection",
+  },
+  {
+    src: require("../assets/portfolio images/dogs 3.jpg"),
+    title: "Canine Lifestyle Shoot",
+  },
+  {
+    src: require("../assets/portfolio images/garnier.jpg"),
+    title: "Garnier Brand Campaign",
+  },
+  {
+    src: require("../assets/portfolio images/icecream.jpg"),
+    title: "Ice Cream Branding",
+  },
+  {
+    src: require("../assets/portfolio images/music.jpg"),
+    title: "Music Album Design",
+  },
+  {
+    src: require("../assets/portfolio images/nails.jpg"),
+    title: "Nail Art Portfolio",
+  },
+  {
+    src: require("../assets/portfolio images/nike.jpg"),
+    title: "Nike Campaign Design",
+  },
+  {
+    src: require("../assets/portfolio images/omega watch.jpg"),
+    title: "Omega Watch Campaign",
+  },
+  {
+    src: require("../assets/portfolio images/oneplus.jpg"),
+    title: "OnePlus Brand Design",
+  },
+  {
+    src: require("../assets/portfolio images/skyline.jpg"),
+    title: "Urban Skyline Photography",
+  },
+  {
+    src: require("../assets/portfolio images/speaker.jpg"),
+    title: "Audio Equipment Design",
+  },
+  {
+    src: require("../assets/portfolio images/swiggy 1.png"),
+    title: "Swiggy Food Delivery",
+  },
+  {
+    src: require("../assets/portfolio images/swiggy 2.png"),
+    title: "Swiggy App Design",
+  },
+  {
+    src: require("../assets/portfolio images/swiggy 3.png"),
+    title: "Swiggy Brand Identity",
+  },
+  {
+    src: require("../assets/portfolio images/swiggy 4.png"),
+    title: "Swiggy Marketing",
+  },
+  {
+    src: require("../assets/portfolio images/swiggy durga.jpg"),
+    title: "Swiggy Festival Campaign",
+  },
+  {
+    src: require("../assets/portfolio images/tacobell.jpg"),
+    title: "TacoBell Brand Design",
+  },
+];
+
 const Portfolio = () => (
   <PortfolioSection id="portfolio">
     <Container>
-      <Badge>Take Full Control of Your Brand</Badge>
-
       <SectionTitle>
         Creative <span className="highlight">Solutions</span>
       </SectionTitle>
@@ -333,7 +734,7 @@ const Portfolio = () => (
 
       <ServicesGrid>
         {services.map((service, index) => (
-          <ServiceCard key={index} colorType={service.colorType}>
+          <ServiceCard key={index} colorType={service.colorType} index={index}>
             <ServiceIcon colorType={service.colorType}>
               {service.icon}
             </ServiceIcon>
@@ -344,7 +745,9 @@ const Portfolio = () => (
       </ServicesGrid>
 
       <StatsSection>
-        <StatsTitle>Improved decision-making</StatsTitle>
+        <StatsTitle>
+          Our <span className="highlight">Flex</span>
+        </StatsTitle>
         <StatsGrid>
           <StatItem>
             <StatNumber colorType="cyan">85%</StatNumber>
@@ -360,6 +763,42 @@ const Portfolio = () => (
           </StatItem>
         </StatsGrid>
       </StatsSection>
+
+      <ImageGallerySection>
+        <BrowserWindow>
+          <BrowserHeader>
+            <BrowserButtons>
+              <BrowserButton color="#ff5f57" />
+              <BrowserButton color="#ffbd2e" />
+              <BrowserButton color="#28ca42" />
+            </BrowserButtons>
+            <BrowserTitle>8Bit Creatives - Portfolio</BrowserTitle>
+          </BrowserHeader>
+
+          <BrowserContent>
+            <PinterestMatrix>
+              {portfolioImages.slice(0, 3).map((image, index) => (
+                <ImageCard key={index}>
+                  <ImageWrapper>
+                    <PortfolioImage
+                      src={image.src}
+                      alt={image.title}
+                      loading="lazy"
+                    />
+                    <ImageOverlay>
+                      <ImageTitle>{image.title}</ImageTitle>
+                    </ImageOverlay>
+                  </ImageWrapper>
+                </ImageCard>
+              ))}
+            </PinterestMatrix>
+
+            <ViewAllButton onClick={() => window.open("/portfolio", "_blank")}>
+              View All
+            </ViewAllButton>
+          </BrowserContent>
+        </BrowserWindow>
+      </ImageGallerySection>
     </Container>
   </PortfolioSection>
 );

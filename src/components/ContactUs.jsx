@@ -4,49 +4,12 @@ import colors from "../theme/colors";
 import { PrimaryButton } from "./buttons";
 
 const ContactSection = styled.section`
-  background: ${colors.background};
+  background: transparent;
   color: ${colors.textPrimary};
   padding: 6rem 2rem;
   position: relative;
   overflow: hidden;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(
-        circle at 20% 80%,
-        rgba(236, 0, 140, 0.04) 0%,
-        transparent 45%
-      ),
-      radial-gradient(
-        circle at 80% 20%,
-        rgba(236, 0, 140, 0.03) 0%,
-        transparent 55%
-      ),
-      radial-gradient(
-        circle at 60% 60%,
-        rgba(236, 0, 140, 0.025) 0%,
-        transparent 50%
-      );
-    pointer-events: none;
-    z-index: 1;
-    animation: contactGlow 9s ease-in-out infinite alternate;
-  }
-
-  @keyframes contactGlow {
-    0% {
-      opacity: 0.4;
-      transform: scale(1);
-    }
-    100% {
-      opacity: 0.7;
-      transform: scale(1.01);
-    }
-  }
+  z-index: 1;
 
   @media (max-width: 768px) {
     padding: 4rem 1rem;
@@ -90,16 +53,15 @@ const SectionSubtitle = styled.p`
 `;
 
 const ContactForm = styled.form`
-  background: ${colors.glass.card};
-  border: 1px solid ${colors.glass.border};
   border-radius: 20px;
   padding: 3rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
-  backdrop-filter: ${colors.blur.large};
-  -webkit-backdrop-filter: ${colors.blur.large};
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 
   @media (max-width: 768px) {
     padding: 2rem;
@@ -193,15 +155,16 @@ const ContactInfo = styled.div`
 `;
 
 const InfoCard = styled.div`
-  background: ${colors.glass.card};
-  border: 1px solid ${colors.glass.borderLight};
-  border-radius: 16px;
+  background: rgba(30, 30, 30, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
   padding: 2rem;
   text-align: center;
   transition: all 0.3s ease;
-  backdrop-filter: ${colors.blur.medium};
-  -webkit-backdrop-filter: ${colors.blur.medium};
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 
   &:hover {
     border-color: ${colors.glass.border};
@@ -379,44 +342,6 @@ const ContactUs = () => {
             </PrimaryButton>
           </SubmitButtonWrapper>
         </ContactForm>
-
-        <ContactInfo>
-          <InfoCard>
-            <InfoIcon>🚀</InfoIcon>
-            <InfoTitle>Quick Response</InfoTitle>
-            <InfoText>
-              We typically respond within 24 hours to discuss your project
-              requirements and next steps.
-            </InfoText>
-          </InfoCard>
-
-          <InfoCard>
-            <InfoIcon>🌐</InfoIcon>
-            <InfoTitle>Global Reach</InfoTitle>
-            <InfoText>
-              Working with clients worldwide, delivering exceptional creative
-              solutions across all time zones.
-            </InfoText>
-          </InfoCard>
-
-          <InfoCard>
-            <InfoIcon>💡</InfoIcon>
-            <InfoTitle>Expert Consultation</InfoTitle>
-            <InfoText>
-              Free initial consultation to understand your vision and provide
-              strategic creative guidance.
-            </InfoText>
-          </InfoCard>
-
-          <InfoCard>
-            <InfoIcon>⚡</InfoIcon>
-            <InfoTitle>Agile Process</InfoTitle>
-            <InfoText>
-              Flexible development approach with regular updates, ensuring your
-              project stays on track and exceeds expectations.
-            </InfoText>
-          </InfoCard>
-        </ContactInfo>
       </Container>
     </ContactSection>
   );

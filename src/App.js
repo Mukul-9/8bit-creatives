@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import colors from "./theme/colors";
 import Navbar from "./components/Navbar";
@@ -7,9 +7,12 @@ import Hero from "./components/Hero";
 import Portfolio from "./components/Portfolio";
 import ContactUs from "./components/ContactUs";
 import FAQs from "./components/FAQs";
+import PortfolioPage from "./components/PortfolioPage";
+import GlobalMosaic from "./components/GlobalMosaic";
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
   
   * {
     margin: 0;
@@ -19,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
   
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-    background: ${colors.background};
+    background: transparent;
     color: ${colors.textPrimary};
     overflow-x: hidden;
     scroll-behavior: smooth;
@@ -68,29 +71,11 @@ const GlobalStyle = createGlobalStyle`
   html {
     scroll-behavior: smooth;
   }
-  
-  /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: ${colors.backgroundCard};
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: ${colors.gradients.primary};
-    border-radius: 3px;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: ${colors.primaryHover};
-  }
 `;
 
 const AppContainer = styled.div`
   min-height: 100vh;
-  background: ${colors.background};
+  background: transparent;
   position: relative;
   z-index: 1;
 `;
@@ -99,13 +84,22 @@ function App() {
   return (
     <Router>
       <GlobalStyle />
-      <AppContainer>
-        <Navbar />
-        <Hero />
-        <Portfolio />
-        <ContactUs />
-        <FAQs />
-      </AppContainer>
+      <GlobalMosaic />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <AppContainer>
+              <Navbar />
+              <Hero />
+              <Portfolio />
+              <ContactUs />
+              <FAQs />
+            </AppContainer>
+          }
+        />
+        <Route path="/portfolio" element={<PortfolioPage />} />
+      </Routes>
     </Router>
   );
 }

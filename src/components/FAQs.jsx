@@ -3,49 +3,12 @@ import styled from "styled-components";
 import colors from "../theme/colors";
 
 const FAQSection = styled.section`
-  background: ${colors.background};
+  background: transparent;
   color: ${colors.textPrimary};
   padding: 6rem 2rem;
   position: relative;
   overflow: hidden;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(
-        circle at 40% 10%,
-        rgba(236, 0, 140, 0.035) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 80% 90%,
-        rgba(236, 0, 140, 0.03) 0%,
-        transparent 45%
-      ),
-      radial-gradient(
-        circle at 10% 70%,
-        rgba(236, 0, 140, 0.025) 0%,
-        transparent 60%
-      );
-    pointer-events: none;
-    z-index: 1;
-    animation: faqGlow 8s ease-in-out infinite alternate;
-  }
-
-  @keyframes faqGlow {
-    0% {
-      opacity: 0.3;
-      transform: rotate(0deg);
-    }
-    100% {
-      opacity: 0.6;
-      transform: rotate(0.5deg);
-    }
-  }
+  z-index: 1;
 
   @media (max-width: 768px) {
     padding: 4rem 1rem;
@@ -95,21 +58,13 @@ const FAQContainer = styled.div`
 `;
 
 const FAQItem = styled.div`
-  background: ${colors.glass.card};
-  border: 1px solid ${colors.glass.borderLight};
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
   transition: all 0.3s ease;
-  backdrop-filter: ${colors.blur.medium};
-  -webkit-backdrop-filter: ${colors.blur.medium};
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-
-  &:hover {
-    border-color: ${colors.glass.border};
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-    background: ${colors.glass.buttonHover};
-  }
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 `;
 
 const Question = styled.button`
@@ -125,14 +80,9 @@ const Question = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.3s ease;
+  transition: all 0.07s ease;
   font-family: "Inter", sans-serif;
   position: relative;
-
-  &:hover {
-    color: ${colors.primary};
-    background: ${colors.glass.secondary};
-  }
 
   &:focus {
     outline: none;
@@ -203,7 +153,7 @@ const faqs = [
 ];
 
 const FAQs = () => {
-  const [openIndex, setOpenIndex] = useState(null);
+  const [openIndex, setOpenIndex] = useState(0);
 
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);
