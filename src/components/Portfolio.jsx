@@ -113,25 +113,80 @@ const ServicesGrid = styled.div`
 
 const ServiceCard = styled.div`
   border-radius: 20px;
+  // background: ${colors.glass.card};
+  background: rgba(0, 0, 0, 0.2);
   padding: 2.5rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.07s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(11px);
   -webkit-backdrop-filter: blur(11px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1),
   width: 300px;
   min-height: 200px;
   flex: 1;
   max-width: 350px;
 
+  /* Top right gradient effect */
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      ellipse 80% 60% at 100% 0%,
+      ${(props) => {
+        if (props.colorType === "cyan") return "rgba(0, 255, 255, 0.3)";
+        if (props.colorType === "magenta") return "rgba(236, 0, 140, 0.3)";
+        if (props.colorType === "yellow") return "rgba(255, 242, 0, 0.3)";
+        return "rgba(255, 165, 0, 0.3)";
+      }}
+        0%,
+      ${(props) => {
+        if (props.colorType === "cyan") return "rgba(0, 200, 255, 0.15)";
+        if (props.colorType === "magenta") return "rgba(200, 0, 120, 0.15)";
+        if (props.colorType === "yellow") return "rgba(255, 200, 0, 0.15)";
+        return "rgba(255, 165, 0, 0.15)";
+      }}
+        40%,
+      transparent 80%
+    );
+    opacity: 0.6;
+    transition: all 0.07s ease;
+    z-index: 2;
+  }
+
   &:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
-      0 0 0 1px rgba(255, 255, 255, 0.1),
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.2),
       inset 0 1px 0 rgba(255, 255, 255, 0.15);
     z-index: 10;
+
+    /* Enhanced top right gradient on hover */
+    &::after {
+      opacity: 0.8;
+      background: radial-gradient(
+        ellipse 90% 70% at 100% 0%,
+        ${(props) => {
+          if (props.colorType === "cyan") return "rgba(0, 255, 255, 0.5)";
+          if (props.colorType === "magenta") return "rgba(236, 0, 140, 0.5)";
+          if (props.colorType === "yellow") return "rgba(255, 242, 0, 0.5)";
+          return "rgba(255, 165, 0, 0.5)";
+        }}
+          0%,
+        ${(props) => {
+          if (props.colorType === "cyan") return "rgba(0, 200, 255, 0.25)";
+          if (props.colorType === "magenta") return "rgba(200, 0, 120, 0.25)";
+          if (props.colorType === "yellow") return "rgba(255, 200, 0, 0.25)";
+          return "rgba(255, 165, 0, 0.25)";
+        }}
+          30%,
+        transparent 60%
+      );
+    }
   }
 
   @media (max-width: 768px) {
@@ -168,6 +223,7 @@ const ServiceIcon = styled.div`
   -webkit-backdrop-filter: ${colors.blur.small};
   position: relative;
   overflow: hidden;
+  z-index: 3;
 
   &::before {
     content: "";
@@ -211,6 +267,8 @@ const ServiceTitle = styled.h3`
   color: ${colors.textPrimary};
   font-family: "Inter", sans-serif;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 3;
 `;
 
 const ServiceDescription = styled.p`
@@ -219,6 +277,8 @@ const ServiceDescription = styled.p`
   line-height: 1.6;
   font-family: "Inter", sans-serif;
   margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 3;
 `;
 
 const StatsSection = styled.div`
@@ -609,7 +669,7 @@ const services = [
     title: "Creative Design",
     description:
       "Innovative visual designs across all digital touchpoints with modern aesthetics and user-centered approach.",
-    colorType: "yellow",
+    colorType: "cyan",
   },
   {
     icon: "📊",
@@ -623,7 +683,7 @@ const services = [
     title: "Project Optimization",
     description:
       "Streamline your creative workflow with key metrics like time-to-market and conversion optimization.",
-    colorType: "cyan",
+    colorType: "yellow",
   },
 ];
 
@@ -731,7 +791,7 @@ const Portfolio = () => (
       </SectionTitle>
 
       <SectionSubtitle>
-        Our clients love how 8BitCreatives simplifies their creative processes
+        Our clients love how 8Bit Creatives simplifies their creative processes
         and streamlines operations
       </SectionSubtitle>
 

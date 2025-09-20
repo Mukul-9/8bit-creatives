@@ -60,7 +60,7 @@ const FAQContainer = styled.div`
 const FAQItem = styled.div`
   border-radius: 20px;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.07s ease;
   backdrop-filter: blur(11px);
   -webkit-backdrop-filter: blur(11px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
@@ -72,7 +72,7 @@ const Question = styled.button`
   padding: 1.5rem;
   background: transparent;
   border: none;
-  color: ${(props) => (props.isOpen ? colors.primary : colors.textPrimary)};
+  color: ${(props) => (props.isOpen ? colors.magenta : colors.textPrimary)};
   font-size: 1.1rem;
   font-weight: 600;
   text-align: left;

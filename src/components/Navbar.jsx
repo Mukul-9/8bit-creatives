@@ -95,7 +95,7 @@ const Navbar = () => (
   <Nav>
     <LogoContainer onClick={() => scrollToSection("hero")}>
       <LogoIcon src="/8BIT LOGO 3.1.jpg" alt="8Bit Creatives Logo" />
-      <LogoText>8BitCreatives</LogoText>
+      <LogoText>8Bit Creatives</LogoText>
     </LogoContainer>
 
     <NavLinks>

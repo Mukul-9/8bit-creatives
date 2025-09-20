@@ -32,7 +32,7 @@ const GlobalStyle = createGlobalStyle`
     position: relative;
   }
   
-  /* Global subtle glow background - MAGENTA ONLY */
+  /* Global subtle glow background - MAGENTA-BLACK ONLY */
   body::before {
     content: "";
     position: fixed;
@@ -41,15 +41,15 @@ const GlobalStyle = createGlobalStyle`
     width: 100vw;
     height: 100vh;
     background: 
-      radial-gradient(circle at 15% 25%, rgba(236, 0, 140, 0.04) 0%, transparent 40%),
-      radial-gradient(circle at 85% 15%, rgba(236, 0, 140, 0.03) 0%, transparent 45%),
-      radial-gradient(circle at 25% 75%, rgba(236, 0, 140, 0.025) 0%, transparent 35%),
+      radial-gradient(circle at 15% 25%, rgba(0, 0, 0, 0.04) 0%, transparent 40%),
+      radial-gradient(circle at 85% 15%, rgba(0, 0, 0, 0.03) 0%, transparent 45%),
+      radial-gradient(circle at 25% 75%, rgba(0, 0, 0, 0.025) 0%, transparent 35%),
       radial-gradient(circle at 75% 85%, rgba(236, 0, 140, 0.03) 0%, transparent 50%),
       radial-gradient(circle at 50% 50%, rgba(236, 0, 140, 0.025) 0%, transparent 60%),
       radial-gradient(circle at 30% 60%, rgba(236, 0, 140, 0.02) 0%, transparent 55%);
     pointer-events: none;
-    z-index: 0;
-    opacity: 0.8;
+    z-index: -9;
+    opacity: 1;
     animation: subtleGlow 8s ease-in-out infinite alternate;
   }
   
