@@ -304,8 +304,9 @@ const ModalTitle = styled.h3`
 
 const CloseButton = styled.button`
   position: absolute;
-  top: -50px;
-  right: 0;
+  top: -1%;
+  right: -20%;
+  right: 10;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
@@ -332,11 +333,26 @@ const PortfolioPage = () => {
   const [visibleImages, setVisibleImages] = useState(8);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [shuffledImages, setShuffledImages] = useState([]);
+
+  // Shuffle images on component mount and when visibleImages changes
+  useEffect(() => {
+    const shuffleArray = (array) => {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    };
+    
+    setShuffledImages(shuffleArray(portfolioImages));
+  }, [visibleImages]);
 
   const loadMoreImages = () => {
     setIsLoading(true);
     setTimeout(() => {
-      setVisibleImages((prev) => Math.min(prev + 8, portfolioImages.length));
+      setVisibleImages((prev) => Math.min(prev + 8, shuffledImages.length));
       setIsLoading(false);
     }, 500);
   };
@@ -356,19 +372,19 @@ const PortfolioPage = () => {
   // Handle keyboard events
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === 'Escape' && selectedImage) {
+      if (event.key === "Escape" && selectedImage) {
         closeModal();
       }
     };
 
     if (selectedImage) {
-      document.addEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+      document.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden"; // Prevent background scrolling
     }
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'unset';
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "unset";
     };
   }, [selectedImage]);
 
@@ -381,14 +397,13 @@ const PortfolioPage = () => {
           Our <span className="highlight">Portfolio</span>
         </Title>
         <Subtitle>
-          Explore our collection of creative work and see how we bring ideas to
-          life
+          Explore our collection and see how we bring ideas to life
         </Subtitle>
       </Header>
 
       <PinterestGrid>
-        {portfolioImages.slice(0, visibleImages).map((image, index) => (
-          <ImageCard key={index} onClick={() => handleImageClick(image)}>
+        {shuffledImages.slice(0, visibleImages).map((image, index) => (
+          <ImageCard key={`${image.title}-${index}`} onClick={() => handleImageClick(image)}>
             <ImageWrapper>
               <PortfolioImage
                 src={image.src}
@@ -403,7 +418,7 @@ const PortfolioPage = () => {
         ))}
       </PinterestGrid>
 
-      {visibleImages < portfolioImages.length && (
+      {visibleImages < shuffledImages.length && (
         <div style={{ textAlign: "center", marginTop: "3rem" }}>
           <BackButton onClick={loadMoreImages} disabled={isLoading}>
             {isLoading ? "Loading..." : "Load More"}
@@ -416,10 +431,7 @@ const PortfolioPage = () => {
         <ModalOverlay onClick={closeModal}>
           <ModalContent onClick={(e) => e.stopPropagation()}>
             <CloseButton onClick={closeModal}>×</CloseButton>
-            <ModalImage
-              src={selectedImage.src}
-              alt={selectedImage.title}
-            />
+            <ModalImage src={selectedImage.src} alt={selectedImage.title} />
             <ModalTitle>{selectedImage.title}</ModalTitle>
           </ModalContent>
         </ModalOverlay>
