@@ -157,12 +157,8 @@ const FAQs = () => {
     <FAQSection id="faqs">
       <Container>
         <SectionTitle>
-          Frequently Asked <span className="highlight">Questions</span>
+          Frequently Asked <span className="highlight">Qs</span>
         </SectionTitle>
-
-        <SectionSubtitle>
-          Find answers to common questions about our services and process.
-        </SectionSubtitle>
 
         <FAQContainer>
           {faqs.map((faq, index) => (

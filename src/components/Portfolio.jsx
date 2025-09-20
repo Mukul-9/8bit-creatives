@@ -388,26 +388,9 @@ const ImageGallerySection = styled.div`
   z-index: 2;
 `;
 
-const GalleryTitle = styled.h3`
-  font-size: 2rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 3rem;
-  color: ${colors.textPrimary};
-  font-family: "Inter", sans-serif;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-
-  .highlight {
-    background: ${colors.gradients.textHighlight};
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-`;
-
 // Laptop Browser Window - Dark Theme with Glassmorphism
 const BrowserWindow = styled.div`
-  background: ${colors.glass.card};
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 16px;
   backdrop-filter: blur(11px);
   -webkit-backdrop-filter: blur(11px);
@@ -419,7 +402,11 @@ const BrowserWindow = styled.div`
 `;
 
 const BrowserHeader = styled.div`
-  background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(25, 25, 25, 0.67) 0%,
+    rgba(26, 26, 26, 0.66) 100%
+  );
   padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
@@ -559,7 +546,7 @@ const BrowserTitle = styled.div`
 
 const BrowserContent = styled.div`
   padding: 0;
-  background: ${colors.background};
+  background: rgba(0, 0, 0, 0.2);
   height: auto;
   position: relative;
   z-index: 2;

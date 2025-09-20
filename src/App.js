@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Portfolio from "./components/Portfolio";
 import ContactAndFAQs from "./components/ContactAndFAQs";
+import Footer from "./components/Footer";
 import PortfolioPage from "./components/PortfolioPage";
 import GlobalMosaic from "./components/GlobalMosaic";
 
@@ -93,6 +94,7 @@ function App() {
               <Hero />
               <Portfolio />
               <ContactAndFAQs />
+              <Footer />
             </AppContainer>
           }
         />

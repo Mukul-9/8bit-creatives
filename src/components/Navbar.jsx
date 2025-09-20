@@ -13,8 +13,8 @@ const Nav = styled.nav`
   position: sticky;
   top: 0;
   z-index: 1000;
-  backdrop-filter: ${colors.blur.medium};
-  -webkit-backdrop-filter: ${colors.blur.medium};
+  backdrop-filter: ${colors.blur.small};
+  -webkit-backdrop-filter: ${colors.blur.small};
   border-radius: 0;
   box-shadow: 0 4px 32px rgba(0, 0, 0, 0.3);
 
