@@ -5,8 +5,7 @@ import colors from "./theme/colors";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Portfolio from "./components/Portfolio";
-import ContactUs from "./components/ContactUs";
-import FAQs from "./components/FAQs";
+import ContactAndFAQs from "./components/ContactAndFAQs";
 import PortfolioPage from "./components/PortfolioPage";
 import GlobalMosaic from "./components/GlobalMosaic";
 
@@ -93,8 +92,7 @@ function App() {
               <Navbar />
               <Hero />
               <Portfolio />
-              <ContactUs />
-              <FAQs />
+              <ContactAndFAQs />
             </AppContainer>
           }
         />
