@@ -390,8 +390,6 @@ const PortfolioPage = () => {
 
   return (
     <PortfolioPageContainer>
-      <BackButton onClick={handleBackClick}>← Back to Home</BackButton>
-
       <Header>
         <Title>
           Our <span className="highlight">Portfolio</span>
