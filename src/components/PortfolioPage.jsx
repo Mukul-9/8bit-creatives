@@ -345,7 +345,7 @@ const PortfolioPage = () => {
       }
       return shuffled;
     };
-    
+
     setShuffledImages(shuffleArray(portfolioImages));
   }, [visibleImages]);
 
@@ -403,7 +403,10 @@ const PortfolioPage = () => {
 
       <PinterestGrid>
         {shuffledImages.slice(0, visibleImages).map((image, index) => (
-          <ImageCard key={`${image.title}-${index}`} onClick={() => handleImageClick(image)}>
+          <ImageCard
+            key={`${image.title}-${index}`}
+            onClick={() => handleImageClick(image)}
+          >
             <ImageWrapper>
               <PortfolioImage
                 src={image.src}

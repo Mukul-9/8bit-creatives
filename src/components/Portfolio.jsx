@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import colors from "../theme/colors";
 
@@ -806,89 +806,107 @@ const portfolioImages = [
   },
 ];
 
-const Portfolio = () => (
-  <PortfolioSection id="portfolio">
-    <Container>
-      <SectionTitle>
-        Creative <span className="highlight">Solutions</span>
-      </SectionTitle>
+const Portfolio = () => {
+  const [shuffledImages, setShuffledImages] = useState([]);
 
-      <SectionSubtitle>
-        Our clients love how 8Bit Creatives simplifies their creative processes
-        and streamlines operations
-      </SectionSubtitle>
+  // Shuffle images on component mount
+  useEffect(() => {
+    const shuffleArray = (array) => {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    };
+    
+    setShuffledImages(shuffleArray(portfolioImages));
+  }, []);
 
-      <ServicesGrid>
-        {services.map((service, index) => (
-          <ServiceCard key={index} colorType={service.colorType} index={index}>
-            <ServiceIcon colorType={service.colorType}>
-              {service.icon}
-            </ServiceIcon>
-            <ServiceTitle>{service.title}</ServiceTitle>
-            <ServiceDescription>{service.description}</ServiceDescription>
-          </ServiceCard>
-        ))}
-      </ServicesGrid>
+  return (
+    <PortfolioSection id="portfolio">
+      <Container>
+        <SectionTitle>
+          Creative <span className="highlight">Solutions</span>
+        </SectionTitle>
 
-      <Header>
-        <StatsTitle>
-          Our <span className="highlight">Flex</span>
-        </StatsTitle>
-      </Header>
-      <StatsSection>
-        <StatsGrid>
-          <StatItem>
-            <StatNumber colorType="cyan">95%</StatNumber>
-            <StatLabel>Improved decision-making</StatLabel>
-          </StatItem>
-          <StatItem>
-            <StatNumber colorType="magenta">99%</StatNumber>
-            <StatLabel>Client satisfaction</StatLabel>
-          </StatItem>
-          <StatItem>
-            <StatNumber colorType="yellow">150+</StatNumber>
-            <StatLabel>Projects completed</StatLabel>
-          </StatItem>
-        </StatsGrid>
-      </StatsSection>
+        <SectionSubtitle>
+          Our clients love how 8Bit Creatives simplifies their creative processes
+          and streamlines operations
+        </SectionSubtitle>
 
-      <ImageGallerySection>
-        <BrowserWindow>
-          <BrowserHeader>
-            <BrowserButtons>
-              <BrowserButton color="#ff5f57" />
-              <BrowserButton color="#ffbd2e" />
-              <BrowserButton color="#28ca42" />
-            </BrowserButtons>
-            <BrowserTitle>8Bit Creatives - Portfolio</BrowserTitle>
-          </BrowserHeader>
+        <ServicesGrid>
+          {services.map((service, index) => (
+            <ServiceCard key={index} colorType={service.colorType} index={index}>
+              <ServiceIcon colorType={service.colorType}>
+                {service.icon}
+              </ServiceIcon>
+              <ServiceTitle>{service.title}</ServiceTitle>
+              <ServiceDescription>{service.description}</ServiceDescription>
+            </ServiceCard>
+          ))}
+        </ServicesGrid>
 
-          <BrowserContent>
-            <PinterestMatrix>
-              {portfolioImages.slice(0, 3).map((image, index) => (
-                <ImageCard key={index}>
-                  <ImageWrapper>
-                    <PortfolioImage
-                      src={image.src}
-                      alt={image.title}
-                      loading="lazy"
-                    />
-                    <ImageOverlay>
-                      <ImageTitle>{image.title}</ImageTitle>
-                    </ImageOverlay>
-                  </ImageWrapper>
-                </ImageCard>
-              ))}
-            </PinterestMatrix>
+        <Header>
+          <StatsTitle>
+            Our <span className="highlight">Flex</span>
+          </StatsTitle>
+        </Header>
+        <StatsSection>
+          <StatsGrid>
+            <StatItem>
+              <StatNumber colorType="cyan">95%</StatNumber>
+              <StatLabel>Improved decision-making</StatLabel>
+            </StatItem>
+            <StatItem>
+              <StatNumber colorType="magenta">99%</StatNumber>
+              <StatLabel>Client satisfaction</StatLabel>
+            </StatItem>
+            <StatItem>
+              <StatNumber colorType="yellow">150+</StatNumber>
+              <StatLabel>Projects completed</StatLabel>
+            </StatItem>
+          </StatsGrid>
+        </StatsSection>
 
-            <ViewAllButton onClick={() => window.open("/portfolio", "_blank")}>
-              View All
-            </ViewAllButton>
-          </BrowserContent>
-        </BrowserWindow>
-      </ImageGallerySection>
-    </Container>
-  </PortfolioSection>
-);
+        <ImageGallerySection>
+          <BrowserWindow>
+            <BrowserHeader>
+              <BrowserButtons>
+                <BrowserButton color="#ff5f57" />
+                <BrowserButton color="#ffbd2e" />
+                <BrowserButton color="#28ca42" />
+              </BrowserButtons>
+              <BrowserTitle>8Bit Creatives - Portfolio</BrowserTitle>
+            </BrowserHeader>
+
+            <BrowserContent>
+              <PinterestMatrix>
+                {shuffledImages.slice(0, 3).map((image, index) => (
+                  <ImageCard key={`${image.title}-${index}`}>
+                    <ImageWrapper>
+                      <PortfolioImage
+                        src={image.src}
+                        alt={image.title}
+                        loading="lazy"
+                      />
+                      <ImageOverlay>
+                        <ImageTitle>{image.title}</ImageTitle>
+                      </ImageOverlay>
+                    </ImageWrapper>
+                  </ImageCard>
+                ))}
+              </PinterestMatrix>
+
+              <ViewAllButton onClick={() => window.open("/portfolio", "_blank")}>
+                View All
+              </ViewAllButton>
+            </BrowserContent>
+          </BrowserWindow>
+        </ImageGallerySection>
+      </Container>
+    </PortfolioSection>
+  );
+};
 
 export default Portfolio;
