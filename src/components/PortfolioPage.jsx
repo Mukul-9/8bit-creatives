@@ -260,13 +260,13 @@ const BackButton = styled.button`
 `;
 
 const PortfolioPage = () => {
-  const [visibleImages, setVisibleImages] = useState(5);
+  const [visibleImages, setVisibleImages] = useState(8);
   const [isLoading, setIsLoading] = useState(false);
 
   const loadMoreImages = () => {
     setIsLoading(true);
     setTimeout(() => {
-      setVisibleImages((prev) => Math.min(prev + 5, portfolioImages.length));
+      setVisibleImages((prev) => Math.min(prev + 8, portfolioImages.length));
       setIsLoading(false);
     }, 500);
   };
@@ -278,13 +278,14 @@ const PortfolioPage = () => {
   return (
     <PortfolioPageContainer>
       <BackButton onClick={handleBackClick}>← Back to Home</BackButton>
-      
+
       <Header>
         <Title>
           Our <span className="highlight">Portfolio</span>
         </Title>
         <Subtitle>
-          Explore our collection of creative work and see how we bring ideas to life
+          Explore our collection of creative work and see how we bring ideas to
+          life
         </Subtitle>
       </Header>
 
