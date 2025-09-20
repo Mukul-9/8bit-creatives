@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import colors from "../theme/colors";
 
@@ -259,9 +259,79 @@ const BackButton = styled.button`
   }
 `;
 
+// Modal Components
+const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+`;
+
+const ModalContent = styled.div`
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const ModalImage = styled.img`
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+`;
+
+const ModalTitle = styled.h3`
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 1rem 0 0 0;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: -50px;
+  right: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+  }
+`;
+
 const PortfolioPage = () => {
   const [visibleImages, setVisibleImages] = useState(8);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const loadMoreImages = () => {
     setIsLoading(true);
@@ -274,6 +344,33 @@ const PortfolioPage = () => {
   const handleBackClick = () => {
     window.history.back();
   };
+
+  const handleImageClick = (image) => {
+    setSelectedImage(image);
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+  };
+
+  // Handle keyboard events
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape' && selectedImage) {
+        closeModal();
+      }
+    };
+
+    if (selectedImage) {
+      document.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedImage]);
 
   return (
     <PortfolioPageContainer>
@@ -291,7 +388,7 @@ const PortfolioPage = () => {
 
       <PinterestGrid>
         {portfolioImages.slice(0, visibleImages).map((image, index) => (
-          <ImageCard key={index}>
+          <ImageCard key={index} onClick={() => handleImageClick(image)}>
             <ImageWrapper>
               <PortfolioImage
                 src={image.src}
@@ -312,6 +409,20 @@ const PortfolioPage = () => {
             {isLoading ? "Loading..." : "Load More"}
           </BackButton>
         </div>
+      )}
+
+      {/* Modal for full-size image */}
+      {selectedImage && (
+        <ModalOverlay onClick={closeModal}>
+          <ModalContent onClick={(e) => e.stopPropagation()}>
+            <CloseButton onClick={closeModal}>×</CloseButton>
+            <ModalImage
+              src={selectedImage.src}
+              alt={selectedImage.title}
+            />
+            <ModalTitle>{selectedImage.title}</ModalTitle>
+          </ModalContent>
+        </ModalOverlay>
       )}
     </PortfolioPageContainer>
   );
