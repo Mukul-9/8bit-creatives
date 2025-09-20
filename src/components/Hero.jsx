@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import colors from "../theme/colors";
-import { PrimaryButton, SecondaryButton } from "./buttons";
+import { PrimaryButton } from "./buttons";
 
 const HeroSection = styled.section`
   color: ${colors.textPrimary};
@@ -19,18 +19,113 @@ const HeroSection = styled.section`
   z-index: 2;
 `;
 
-// Content container with glassmorphism
+// Content container with glassmorphism and radial backgrounds
 const HeroContent = styled.div`
   position: relative;
   z-index: 3;
   max-width: 1200px;
   padding: 3rem;
   border-radius: 20px;
+  background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(11px);
   -webkit-backdrop-filter: blur(11px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 20px rgba(255, 255, 255, 0.05);
   margin: 2rem;
+  overflow: hidden;
+  transition: all 0.07s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Multiple radial gradients from different corners with randomization */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(
+        ellipse 70% 50% at 15% 20%,
+        rgba(236, 0, 140, 0.25) 0%,
+        rgba(200, 0, 120, 0.12) 40%,
+        transparent 80%
+      ),
+      radial-gradient(
+        ellipse 60% 80% at 85% 15%,
+        rgba(0, 255, 255, 0.2) 0%,
+        rgba(0, 200, 255, 0.1) 35%,
+        transparent 75%
+      ),
+      radial-gradient(
+        ellipse 80% 40% at 25% 85%,
+        rgba(255, 242, 0, 0.22) 0%,
+        rgba(255, 200, 0, 0.11) 45%,
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 50% 70% at 90% 80%,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.08) 30%,
+        transparent 65%
+      );
+    opacity: 0.7;
+    transition: all 0.07s ease;
+    z-index: 1;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(
+        ellipse 45% 60% at 35% 10%,
+        rgba(255, 255, 255, 0.12) 0%,
+        rgba(255, 255, 255, 0.06) 50%,
+        transparent 80%
+      ),
+      radial-gradient(
+        ellipse 65% 45% at 75% 25%,
+        rgba(236, 0, 140, 0.18) 0%,
+        rgba(200, 0, 120, 0.09) 40%,
+        transparent 75%
+      ),
+      radial-gradient(
+        ellipse 55% 70% at 10% 75%,
+        rgba(0, 255, 255, 0.16) 0%,
+        rgba(0, 200, 255, 0.08) 35%,
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 70% 55% at 95% 90%,
+        rgba(255, 242, 0, 0.2) 0%,
+        rgba(255, 200, 0, 0.1) 40%,
+        transparent 75%
+      );
+    opacity: 0.5;
+    transition: all 0.07s ease;
+    z-index: 2;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+
+    &::before {
+      opacity: 0.9;
+    }
+
+    &::after {
+      opacity: 0.7;
+    }
+  }
 `;
 
 const HeroTitle = styled.h1`
@@ -40,7 +135,7 @@ const HeroTitle = styled.h1`
   line-height: 1.1;
   max-width: 900px;
   position: relative;
-  z-index: 2;
+  z-index: 3;
   font-family: "Inter", sans-serif;
 
   .highlight {
@@ -99,7 +194,7 @@ const HeroSubtitle = styled.p`
   line-height: 1.6;
   text-align: center;
   position: relative;
-  z-index: 2;
+  z-index: 3;
   font-family: "Inter", sans-serif;
 
   @media (max-width: 768px) {
@@ -115,7 +210,7 @@ const ButtonContainer = styled.div`
   align-items: center;
   margin-bottom: 4rem;
   position: relative;
-  z-index: 2;
+  z-index: 3;
 
   @media (max-width: 480px) {
     flex-direction: column;
@@ -125,7 +220,7 @@ const ButtonContainer = styled.div`
 
 const PartnersSection = styled.div`
   position: relative;
-  z-index: 2;
+  z-index: 3;
   margin-top: 2rem;
 `;
 
