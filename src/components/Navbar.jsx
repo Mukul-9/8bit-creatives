@@ -80,7 +80,7 @@ const NavLink = styled.a`
   }
 
   &.active {
-    color: ${colors.primary};
+    color: ${colors.magenta};
   }
 `;
 

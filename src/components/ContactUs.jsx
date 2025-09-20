@@ -26,7 +26,7 @@ const SectionTitle = styled.h2`
   font-family: "Inter", sans-serif;
 
   .highlight {
-    background: ${colors.gradients.textHighlight};
+    background: ${colors.magenta};
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -35,15 +35,6 @@ const SectionTitle = styled.h2`
   @media (max-width: 768px) {
     font-size: 2.2rem;
   }
-`;
-
-const SectionSubtitle = styled.p`
-  font-size: 1.1rem;
-  color: ${colors.textSecondary};
-  text-align: center;
-  margin-bottom: 3rem;
-  line-height: 1.6;
-  font-family: "Inter", sans-serif;
 `;
 
 const ContactForm = styled.form`

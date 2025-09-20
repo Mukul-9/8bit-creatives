@@ -25,7 +25,7 @@ const SectionTitle = styled.h2`
   font-family: "Inter", sans-serif;
 
   .highlight {
-    background: ${colors.gradients.textHighlight};
+    background: ${colors.magenta};
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

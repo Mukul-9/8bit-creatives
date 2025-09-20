@@ -281,20 +281,19 @@ const Footer = () => {
         <MainFooter>
           <LeftColumn>
             <CTAHeadline>
-              Have a Cool Idea?<br />
+              Have a Cool Idea?
+              <br />
               Let's Collaborate<span className="dot"></span>
             </CTAHeadline>
-            <CTAButton>
-              <Button>Get In Touch</Button>
-              <PlusIcon>+</PlusIcon>
-            </CTAButton>
           </LeftColumn>
 
           <MiddleColumn>
             <div>
               <SectionTitle>Location</SectionTitle>
               <SectionContent>
-                <Address>1330 Huffman Rd, Anchorage, Alaska, United States</Address>
+                <Address>
+                  16/2 Municipal Office Lane, Kolkata, West Bengal, India
+                </Address>
               </SectionContent>
             </div>
             <div>
@@ -315,8 +314,8 @@ const Footer = () => {
             <div>
               <SectionTitle>Contact</SectionTitle>
               <ContactInfo>
-                <ContactItem>+661 2058 6987 20</ContactItem>
-                <ContactItem>Hello@8BitCreatives.com</ContactItem>
+                <ContactItem>+91 9051628858</ContactItem>
+                <ContactItem>designers@8bitcreatives.design</ContactItem>
               </ContactInfo>
             </div>
             <div>
@@ -324,11 +323,9 @@ const Footer = () => {
               <HelpfulLinks>
                 <HelpfulLink href="#">Privacy Policy</HelpfulLink>
                 <Dot />
-                <HelpfulLink href="#">About</HelpfulLink>
+                <HelpfulLink href="#">Terms</HelpfulLink>
                 <Dot />
-                <HelpfulLink href="#">Services</HelpfulLink>
-                <Dot />
-                <HelpfulLink href="#">Work</HelpfulLink>
+                <HelpfulLink href="#">Team</HelpfulLink>
                 <Dot />
                 <HelpfulLink href="#">Blog</HelpfulLink>
               </HelpfulLinks>
@@ -337,16 +334,16 @@ const Footer = () => {
         </MainFooter>
 
         <BottomFooter>
-          <Copyright>©8Bit Creatives 2025</Copyright>
-          <Attribution>
+          <Copyright>© 8Bit Creatives 2025</Copyright>
+          {/* <Attribution>
             <span className="heart">♥</span>
             Made with Love on React
-          </Attribution>
-          <Creator>
+          </Attribution> */}
+          {/* <Creator>
             Created by
             <ProfilePic>M</ProfilePic>
             <Signature>Mukul</Signature>
-          </Creator>
+          </Creator> */}
         </BottomFooter>
       </Container>
     </FooterSection>
