@@ -5,7 +5,7 @@ import colors from "../theme/colors";
 const PortfolioSection = styled.section`
   background: transparent;
   color: ${colors.textPrimary};
-  padding: 6rem 2rem;
+  padding: 4rem 2rem;
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -355,7 +355,7 @@ const StatsSection = styled.div`
 `;
 const Header = styled.header`
   text-align: center;
-  margin-bottom: 3rem;
+  margin: 3rem auto;
 `;
 const StatsTitle = styled.h3`
   font-size: 3rem;
@@ -433,7 +433,7 @@ const BrowserWindow = styled.div`
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   overflow: hidden;
-  margin: 2rem 0;
+  margin: 3rem 0;
   position: relative;
 `;
 
@@ -559,7 +559,7 @@ const ViewAllButton = styled.button`
   }
 
   &:active {
-    transform: translateX(-50%) translateY(0);
+    // transform: translateX(-50%) translateY(0);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2),
       0 0 0 1px rgba(255, 255, 255, 0.05),
       inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -581,7 +581,7 @@ const BrowserTitle = styled.div`
 `;
 
 const BrowserContent = styled.div`
-  padding: 0;
+  padding: 1rem;
   background: rgba(0, 0, 0, 0.2);
   height: auto;
   position: relative;
@@ -819,25 +819,29 @@ const Portfolio = () => {
       }
       return shuffled;
     };
-    
+
     setShuffledImages(shuffleArray(portfolioImages));
   }, []);
 
   return (
     <PortfolioSection id="portfolio">
       <Container>
-        <SectionTitle>
+        <SectionTitle id="creative-solutions">
           Creative <span className="highlight">Solutions</span>
         </SectionTitle>
 
         <SectionSubtitle>
-          Our clients love how 8Bit Creatives simplifies their creative processes
-          and streamlines operations
+          Our clients love how we simplify their creative processes and
+          operations
         </SectionSubtitle>
 
         <ServicesGrid>
           {services.map((service, index) => (
-            <ServiceCard key={index} colorType={service.colorType} index={index}>
+            <ServiceCard
+              key={index}
+              colorType={service.colorType}
+              index={index}
+            >
               <ServiceIcon colorType={service.colorType}>
                 {service.icon}
               </ServiceIcon>
@@ -846,31 +850,8 @@ const Portfolio = () => {
             </ServiceCard>
           ))}
         </ServicesGrid>
-
-        <Header>
-          <StatsTitle>
-            Our <span className="highlight">Flex</span>
-          </StatsTitle>
-        </Header>
-        <StatsSection>
-          <StatsGrid>
-            <StatItem>
-              <StatNumber colorType="cyan">95%</StatNumber>
-              <StatLabel>Improved decision-making</StatLabel>
-            </StatItem>
-            <StatItem>
-              <StatNumber colorType="magenta">99%</StatNumber>
-              <StatLabel>Client satisfaction</StatLabel>
-            </StatItem>
-            <StatItem>
-              <StatNumber colorType="yellow">150+</StatNumber>
-              <StatLabel>Projects completed</StatLabel>
-            </StatItem>
-          </StatsGrid>
-        </StatsSection>
-
         <ImageGallerySection>
-          <BrowserWindow>
+          <BrowserWindow id="browser-window">
             <BrowserHeader>
               <BrowserButtons>
                 <BrowserButton color="#ff5f57" />
@@ -898,12 +879,36 @@ const Portfolio = () => {
                 ))}
               </PinterestMatrix>
 
-              <ViewAllButton onClick={() => window.open("/portfolio", "_blank")}>
+              <ViewAllButton
+                onClick={() => window.open("/portfolio", "_blank")}
+              >
                 View All
               </ViewAllButton>
             </BrowserContent>
           </BrowserWindow>
         </ImageGallerySection>
+        <Header>
+          <StatsTitle>
+            Our <span className="highlight">Flex</span>
+          </StatsTitle>
+          <SectionSubtitle>We clock amazing numbers BTW!</SectionSubtitle>
+        </Header>
+        <StatsSection>
+          <StatsGrid>
+            <StatItem>
+              <StatNumber colorType="cyan">95%</StatNumber>
+              <StatLabel>Improved decision-making</StatLabel>
+            </StatItem>
+            <StatItem>
+              <StatNumber colorType="magenta">99%</StatNumber>
+              <StatLabel>Client satisfaction</StatLabel>
+            </StatItem>
+            <StatItem>
+              <StatNumber colorType="yellow">150+</StatNumber>
+              <StatLabel>Projects completed</StatLabel>
+            </StatItem>
+          </StatsGrid>
+        </StatsSection>
       </Container>
     </PortfolioSection>
   );

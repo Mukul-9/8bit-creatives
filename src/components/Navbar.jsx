@@ -102,8 +102,8 @@ const Navbar = () => (
       <NavLink onClick={() => scrollToSection("hero")} className="active">
         Home
       </NavLink>
-      <NavLink onClick={() => scrollToSection("portfolio")}>Portfolio</NavLink>
-      <NavLink onClick={() => scrollToSection("services")}>Services</NavLink>
+      <NavLink onClick={() => scrollToSection("browser-window")}>Portfolio</NavLink>
+      <NavLink onClick={() => scrollToSection("creative-solutions")}>Services</NavLink>
       <NavLink onClick={() => scrollToSection("contact")}>Contact</NavLink>
       <NavLink onClick={() => scrollToSection("faqs")}>FAQ</NavLink>
     </NavLinks>

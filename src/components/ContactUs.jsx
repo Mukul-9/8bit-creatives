@@ -21,7 +21,7 @@ const SectionTitle = styled.h2`
   font-size: 3rem;
   font-weight: 700;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
   line-height: 1.2;
   font-family: "Inter", sans-serif;
 

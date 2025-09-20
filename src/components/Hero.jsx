@@ -305,7 +305,7 @@ const Hero = () => {
 
         <HeroSubtitle>
           Unlock the full potential of your brand with our suite of <br />{" "}
-          creative design tools and expert digital solutions.
+          creative minds and expert digital solutions.
         </HeroSubtitle>
 
         <ButtonContainer>
