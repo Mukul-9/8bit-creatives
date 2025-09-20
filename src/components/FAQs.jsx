@@ -85,7 +85,7 @@ const Question = styled.button`
 
 const QuestionIcon = styled.span`
   font-size: 1.2rem;
-  color: ${colors.primary};
+  color: ${colors.magenta};
   transform: ${(props) => (props.isOpen ? "rotate(0deg)" : "rotate(180deg)")};
   transition: transform 0.07s ease;
   font-weight: 300;
