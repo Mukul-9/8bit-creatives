@@ -3,7 +3,7 @@ export const colors = {
   // Primary brand colors - Vibrant trio
   yellow: "#FFF200",
   magenta: "#EC008C",
-  cyan: "#00A4E4",
+  cyan: "#00FFFF",
 
   // Primary combinations
   primary: "#00A4E4", // Cyan as main primary
@@ -35,7 +35,7 @@ export const colors = {
   // Gradient combinations (Using cyan for highlights, magenta for glows, all three for buttons)
   gradients: {
     // Text highlights - CYAN ONLY
-    textHighlight: "linear-gradient(45deg, #00A4E4 0%, #0094D4 100%)", // Cyan only for text
+    textHighlight: "#00FFFF", // Cyan only for text
 
     // Button gradients - ALL THREE COLORS
     primary: "linear-gradient(135deg, #00A4E4 0%, #EC008C 50%, #FFF200 100%)", // Cyan → Magenta → Yellow
@@ -66,12 +66,12 @@ export const colors = {
     small: "0 2px 8px rgba(0, 0, 0, 0.3)",
     medium: "0 4px 16px rgba(0, 0, 0, 0.4)",
     large: "0 8px 32px rgba(0, 0, 0, 0.5)",
-    glow: "0 0 20px rgba(0, 164, 228, 0.3)", // Cyan glow as primary
-    glowStrong: "0 0 40px rgba(0, 164, 228, 0.5)",
+    glow: "0 0 20px rgba(0, 255, 255, 0.3)", // Cyan glow as primary
+    glowStrong: "0 0 40px rgba(0, 255, 255, 0.5)",
     glowMagenta: "0 0 20px rgba(236, 0, 140, 0.3)",
     glowMagentaStrong: "0 0 40px rgba(236, 0, 140, 0.5)",
-    glowCyan: "0 0 20px rgba(0, 164, 228, 0.3)",
-    glowCyanStrong: "0 0 40px rgba(0, 164, 228, 0.5)",
+    glowCyan: "0 0 20px rgba(0, 255, 255, 0.3)",
+    glowCyanStrong: "0 0 40px rgba(0, 255, 255, 0.5)",
     glowYellow: "0 0 20px rgba(255, 242, 0, 0.3)",
     glowYellowStrong: "0 0 40px rgba(255, 242, 0, 0.5)",
   },
@@ -95,7 +95,7 @@ export const colors = {
     light: "rgba(255, 255, 255, 0.1)",
 
     // Colored glass variants
-    cyan: "rgba(0, 164, 228, 0.08)",
+    cyan: "rgba(0, 255, 255, 0.08)",
     magenta: "rgba(236, 0, 140, 0.08)",
     yellow: "rgba(255, 242, 0, 0.08)",
 
@@ -106,7 +106,7 @@ export const colors = {
 
     // Button backgrounds
     buttonPrimary:
-      "linear-gradient(135deg, rgba(0, 164, 228, 0.2) 0%, rgba(236, 0, 140, 0.15) 50%, rgba(255, 242, 0, 0.1) 100%)",
+      "linear-gradient(135deg, rgba(0, 255, 255, 0.2) 0%, rgba(236, 0, 140, 0.15) 50%, rgba(255, 242, 0, 0.1) 100%)",
     buttonSecondary: "rgba(255, 255, 255, 0.08)",
     buttonHover: "rgba(255, 255, 255, 0.15)",
 
@@ -114,14 +114,14 @@ export const colors = {
     border: "rgba(255, 255, 255, 0.2)",
     borderLight: "rgba(255, 255, 255, 0.1)",
     borderColored:
-      "linear-gradient(45deg, rgba(0, 164, 228, 0.3), rgba(236, 0, 140, 0.3), rgba(255, 242, 0, 0.3))",
+      "linear-gradient(45deg, rgba(0, 255, 255, 0.3), rgba(236, 0, 140, 0.3), rgba(255, 242, 0, 0.3))",
   },
 
   // Backdrop blur values
   blur: {
     small: "blur(8px)",
     medium: "blur(12px)",
-    large: "blur(20px)",
+    large: "blur(11px)",
     xlarge: "blur(32px)",
   },
 };

@@ -11,7 +11,7 @@ const PortfolioSection = styled.section`
   z-index: 1;
 
   &::before {
-    content: "";
+    // content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -98,7 +98,7 @@ const SectionSubtitle = styled.p`
 
 const ServicesGrid = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: stretch;
   gap: 2rem;
   margin-bottom: 4rem;
@@ -117,8 +117,8 @@ const ServiceCard = styled.div`
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(11px);
+  -webkit-backdrop-filter: blur(11px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   width: 300px;
@@ -223,12 +223,12 @@ const ServiceDescription = styled.p`
 
 const StatsSection = styled.div`
   border-radius: 20px;
-  padding: 3rem 2rem;
+  padding: 1rem 3rem 3rem 3rem;
   text-align: center;
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(11px);
+  -webkit-backdrop-filter: blur(11px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -261,16 +261,26 @@ const StatsSection = styled.div`
     }
   }
 `;
-
+const Header = styled.header`
+  text-align: center;
+  margin-bottom: 3rem;
+`;
 const StatsTitle = styled.h3`
-  font-size: 1.6rem;
+  font-size: 3rem;
   font-weight: 700;
   margin-bottom: 1rem;
   color: ${colors.textPrimary};
-  position: relative;
-  z-index: 2;
-  font-family: "Inter", sans-serif;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+  .highlight {
+    background: ${colors.gradients.textHighlight};
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 const StatsGrid = styled.div`
@@ -339,8 +349,8 @@ const GalleryTitle = styled.h3`
 const BrowserWindow = styled.div`
   background: ${colors.glass.card};
   border-radius: 16px;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(11px);
+  -webkit-backdrop-filter: blur(11px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   overflow: hidden;
@@ -372,33 +382,27 @@ const BrowserButton = styled.div`
 `;
 
 const ViewAllButton = styled.button`
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
   background: linear-gradient(
     135deg,
     rgba(30, 30, 30, 0.9) 0%,
     rgba(40, 40, 40, 0.8) 100%
   );
+  margin: 1rem auto;
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 0.8rem 2rem;
+  padding: 1rem 3rem;
   border-radius: 50px;
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.07s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: "Inter", sans-serif;
   z-index: 20;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(11px);
+  -webkit-backdrop-filter: blur(11px);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 
   &::before {
     content: "";
@@ -439,7 +443,6 @@ const ViewAllButton = styled.button`
   }
 
   &:hover {
-    transform: translateX(-50%) translateY(-2px);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4),
       0 0 0 1px rgba(255, 255, 255, 0.1),
       inset 0 1px 0 rgba(255, 255, 255, 0.15);
@@ -488,8 +491,8 @@ const BrowserTitle = styled.div`
   font-size: 0.9rem;
   color: ${colors.textSecondary};
   font-family: "Inter", sans-serif;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(11px);
+  -webkit-backdrop-filter: blur(11px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 `;
@@ -506,9 +509,9 @@ const BrowserContent = styled.div`
 const PinterestMatrix = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 600px;
-  gap: 1rem;
-  padding: 1rem;
+  grid-auto-rows: 400px;
+  gap: 2rem;
+  padding: 3rem;
 
   @media (max-width: 768px) {
     grid-auto-rows: 500px;
@@ -530,11 +533,11 @@ const ImageCard = styled.div`
   border-radius: 20px;
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.07s ease;
   height: 100%;
   background: rgba(30, 30, 30, 0.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(11px);
+  -webkit-backdrop-filter: blur(11px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 
@@ -560,7 +563,7 @@ const PortfolioImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: transform 0.07s ease;
   border-radius: 16px;
 
   ${ImageCard}:hover & {
@@ -744,17 +747,19 @@ const Portfolio = () => (
         ))}
       </ServicesGrid>
 
-      <StatsSection>
+      <Header>
         <StatsTitle>
           Our <span className="highlight">Flex</span>
         </StatsTitle>
+      </Header>
+      <StatsSection>
         <StatsGrid>
           <StatItem>
-            <StatNumber colorType="cyan">85%</StatNumber>
+            <StatNumber colorType="cyan">95%</StatNumber>
             <StatLabel>Improved decision-making</StatLabel>
           </StatItem>
           <StatItem>
-            <StatNumber colorType="magenta">92%</StatNumber>
+            <StatNumber colorType="magenta">99%</StatNumber>
             <StatLabel>Client satisfaction</StatLabel>
           </StatItem>
           <StatItem>

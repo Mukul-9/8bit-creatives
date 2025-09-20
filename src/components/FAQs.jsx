@@ -61,8 +61,8 @@ const FAQItem = styled.div`
   border-radius: 20px;
   overflow: hidden;
   transition: all 0.3s ease;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(11px);
+  -webkit-backdrop-filter: blur(11px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 `;
@@ -92,8 +92,8 @@ const Question = styled.button`
 const QuestionIcon = styled.span`
   font-size: 1.2rem;
   color: ${colors.primary};
-  transform: ${(props) => (props.isOpen ? "rotate(45deg)" : "rotate(0deg)")};
-  transition: transform 0.3s ease;
+  transform: ${(props) => (props.isOpen ? "rotate(0deg)" : "rotate(180deg)")};
+  transition: transform 0.07s ease;
   font-weight: 300;
   min-width: 20px;
   text-align: center;
@@ -102,7 +102,7 @@ const QuestionIcon = styled.span`
 const Answer = styled.div`
   max-height: ${(props) => (props.isOpen ? "300px" : "0")};
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.07s ease;
   border-top: ${(props) =>
     props.isOpen ? `1px solid ${colors.glass.borderLight}` : "none"};
   background: ${(props) =>
@@ -178,7 +178,7 @@ const FAQs = () => {
                 onClick={() => toggleFAQ(index)}
               >
                 {faq.question}
-                <QuestionIcon isOpen={openIndex === index}>+</QuestionIcon>
+                <QuestionIcon isOpen={openIndex === index}>^</QuestionIcon>
               </Question>
               <Answer isOpen={openIndex === index}>
                 <AnswerContent isOpen={openIndex === index}>

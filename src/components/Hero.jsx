@@ -4,7 +4,6 @@ import colors from "../theme/colors";
 import { PrimaryButton, SecondaryButton } from "./buttons";
 
 const HeroSection = styled.section`
-  background: transparent;
   color: ${colors.textPrimary};
   height: 100vh;
   width: 100vw;
@@ -27,35 +26,11 @@ const HeroContent = styled.div`
   max-width: 1200px;
   padding: 3rem;
   border-radius: 20px;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(11px);
+  -webkit-backdrop-filter: blur(11px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   margin: 2rem;
-`;
-
-const Badge = styled.div`
-  background: ${colors.glass.card};
-  border: 1px solid ${colors.glass.border};
-  border-radius: 20px;
-  padding: 0.5rem 1rem;
-  margin-bottom: 2rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: ${colors.textSecondary};
-  font-size: 0.85rem;
-  font-weight: 500;
-  position: relative;
-  z-index: 2;
-  backdrop-filter: ${colors.blur.small};
-  -webkit-backdrop-filter: ${colors.blur.small};
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-
-  &::before {
-    content: "🔥";
-    font-size: 0.9rem;
-  }
 `;
 
 const HeroTitle = styled.h1`
@@ -75,6 +50,20 @@ const HeroTitle = styled.h1`
     -webkit-text-fill-color: transparent;
     position: relative;
 
+    &.magenta {
+      background: ${colors.magenta};
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    &.yellow {
+      background: ${colors.yellow};
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
     &::after {
       content: "|";
       color: ${colors.magenta};
@@ -88,7 +77,7 @@ const HeroTitle = styled.h1`
     50% {
       opacity: 1;
     }
-    51%,
+    50%,
     100% {
       opacity: 0;
     }
@@ -172,20 +161,20 @@ const PartnerLogo = styled.div`
 `;
 
 const Hero = () => {
-  const [currentText, setCurrentText] = useState("");
+  const [currentText, setCurrentText] = useState("Creative Solutions");
   const [isDeleting, setIsDeleting] = useState(false);
   const [textIndex, setTextIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
 
-  // Typing phrases
-  const typingPhrases = [
-    "Creative Solutions",
-    "Fresh Perspectives",
-    "Monetization Material",
-  ];
-
   // Typing effect - Flawless looping with proper state management
   useEffect(() => {
+    // Typing phrases
+    const typingPhrases = [
+      "Creative Solutions",
+      "Fresh Perspectives",
+      "Monetization Material",
+    ];
+
     let timeoutId;
 
     const typeText = () => {
@@ -196,7 +185,7 @@ const Hero = () => {
         if (charIndex < currentPhrase.length) {
           setCurrentText(currentPhrase.substring(0, charIndex + 1));
           setCharIndex((prev) => prev + 1);
-          timeoutId = setTimeout(typeText, 80);
+          timeoutId = setTimeout(typeText, 1);
         } else {
           // Finished typing, wait then start deleting
           timeoutId = setTimeout(() => {
@@ -208,7 +197,7 @@ const Hero = () => {
         if (charIndex > 0) {
           setCurrentText(currentPhrase.substring(0, charIndex - 1));
           setCharIndex((prev) => prev - 1);
-          timeoutId = setTimeout(typeText, 50);
+          timeoutId = setTimeout(typeText, 30);
         } else {
           // Finished deleting, move to next phrase immediately
           setIsDeleting(false);
@@ -219,14 +208,14 @@ const Hero = () => {
       }
     };
 
-    timeoutId = setTimeout(typeText, 100);
+    timeoutId = setTimeout(typeText, 30);
 
     return () => {
       if (timeoutId) {
         clearTimeout(timeoutId);
       }
     };
-  }, [textIndex, isDeleting, charIndex, typingPhrases]);
+  }, [textIndex, isDeleting, charIndex]);
 
   // Static Pinterest-style layout - no flipping
 
@@ -236,8 +225,11 @@ const Hero = () => {
       ?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const scrollToContact = () => {
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+  // Determine color class based on current phrase index
+  const getColorClass = () => {
+    if (textIndex === 1) return "magenta"; // "Fresh Perspectives"
+    if (textIndex === 2) return "yellow"; // "Monetization Material"
+    return ""; // Default cyan for "Creative Solutions" (textIndex === 0)
   };
 
   return (
@@ -246,11 +238,9 @@ const Hero = () => {
       <HeroContent>
         <HeroTitle>
           Transform Your Ideas Into <br />
-          <span className="highlight">
-            {currentText || "Creative Solutions"}
-          </span>
+          <span className={`highlight ${getColorClass()}`}>{currentText}</span>
         </HeroTitle>
-    
+
         <HeroSubtitle>
           Unlock the full potential of your brand with our suite of <br />{" "}
           creative design tools and expert digital solutions.
@@ -260,9 +250,6 @@ const Hero = () => {
           <PrimaryButton onClick={scrollToPortfolio} size="large" fullWidth>
             View Our Work
           </PrimaryButton>
-          <SecondaryButton onClick={scrollToContact} size="large" fullWidth>
-            Talk to Sales
-          </SecondaryButton>
         </ButtonContainer>
 
         <PartnersSection>
