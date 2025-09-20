@@ -282,6 +282,7 @@ const ServiceDescription = styled.p`
 `;
 
 const StatsSection = styled.div`
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 20px;
   padding: 1rem 3rem 3rem 3rem;
   text-align: center;
@@ -289,35 +290,85 @@ const StatsSection = styled.div`
   overflow: hidden;
   backdrop-filter: blur(11px);
   -webkit-backdrop-filter: blur(11px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 20px rgba(255, 255, 255, 0.05);
+  transition: all 0.07s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Multiple radial gradients from different corners with randomization */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        ellipse 70% 50% at 15% 20%,
+        rgba(236, 0, 140, 0.25) 0%,
+        rgba(200, 0, 120, 0.12) 40%,
+        transparent 80%
+      ),
+      radial-gradient(
+        ellipse 60% 80% at 85% 15%,
+        rgba(0, 255, 255, 0.2) 0%,
+        rgba(0, 200, 255, 0.1) 35%,
+        transparent 75%
+      );
+    opacity: 0.7;
+    transition: all 0.07s ease;
+    z-index: 1;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        ellipse 45% 60% at 35% 10%,
+        rgba(255, 255, 255, 0.12) 0%,
+        rgba(255, 255, 255, 0.06) 50%,
+        transparent 80%
+      ),
+      radial-gradient(
+        ellipse 65% 45% at 75% 25%,
+        rgba(236, 0, 140, 0.18) 0%,
+        rgba(200, 0, 120, 0.09) 40%,
+        transparent 75%
+      ),
+      radial-gradient(
+        ellipse 55% 70% at 10% 75%,
+        rgba(0, 255, 255, 0.16) 0%,
+        rgba(0, 200, 255, 0.08) 35%,
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 70% 55% at 95% 90%,
+        rgba(255, 242, 0, 0.2) 0%,
+        rgba(255, 200, 0, 0.1) 40%,
+        transparent 75%
+      );
+    opacity: 0.5;
+    transition: all 0.07s ease;
+    z-index: 2;
+  }
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
-      0 0 0 1px rgba(255, 255, 255, 0.1),
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.2),
       inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.2);
 
     &::before {
-      background: linear-gradient(
-        135deg,
-        rgba(0, 164, 228, 0.08) 0%,
-        rgba(236, 0, 140, 0.05) 50%,
-        rgba(255, 242, 0, 0.03) 100%
-      );
+      opacity: 0.9;
     }
 
     &::after {
-      background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(0, 164, 228, 0.5) 25%,
-        rgba(236, 0, 140, 0.5) 50%,
-        rgba(255, 242, 0, 0.5) 75%,
-        transparent 100%
-      );
+      opacity: 0.7;
     }
   }
 `;
@@ -330,6 +381,8 @@ const StatsTitle = styled.h3`
   font-weight: 700;
   margin-bottom: 1rem;
   color: ${colors.textPrimary};
+  position: relative;
+  z-index: 3;
 
   .highlight {
     background: ${colors.magenta};
@@ -349,11 +402,13 @@ const StatsGrid = styled.div`
   gap: 2rem;
   margin-top: 2rem;
   position: relative;
-  z-index: 2;
+  z-index: 3;
 `;
 
 const StatItem = styled.div`
   text-align: center;
+  position: relative;
+  z-index: 3;
 `;
 
 const StatNumber = styled.div`

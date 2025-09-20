@@ -24,15 +24,11 @@ const HeroContent = styled.div`
   position: relative;
   z-index: 3;
   max-width: 1200px;
-  padding: 3rem;
+  padding: 3.5rem 3rem;
   border-radius: 20px;
   background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(11px);
   -webkit-backdrop-filter: blur(11px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 0 20px rgba(255, 255, 255, 0.05);
   margin: 2rem;
   overflow: hidden;
   transition: all 0.07s cubic-bezier(0.4, 0, 0.2, 1);
@@ -45,8 +41,7 @@ const HeroContent = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-      radial-gradient(
+    background: radial-gradient(
         ellipse 70% 50% at 15% 20%,
         rgba(236, 0, 140, 0.25) 0%,
         rgba(200, 0, 120, 0.12) 40%,
@@ -58,18 +53,6 @@ const HeroContent = styled.div`
         rgba(0, 200, 255, 0.1) 35%,
         transparent 75%
       ),
-      radial-gradient(
-        ellipse 80% 40% at 25% 85%,
-        rgba(255, 242, 0, 0.22) 0%,
-        rgba(255, 200, 0, 0.11) 45%,
-        transparent 70%
-      ),
-      radial-gradient(
-        ellipse 50% 70% at 90% 80%,
-        rgba(255, 255, 255, 0.15) 0%,
-        rgba(255, 255, 255, 0.08) 30%,
-        transparent 65%
-      );
     opacity: 0.7;
     transition: all 0.07s ease;
     z-index: 1;
@@ -82,8 +65,7 @@ const HeroContent = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-      radial-gradient(
+    background: radial-gradient(
         ellipse 45% 60% at 35% 10%,
         rgba(255, 255, 255, 0.12) 0%,
         rgba(255, 255, 255, 0.06) 50%,
@@ -110,21 +92,6 @@ const HeroContent = styled.div`
     opacity: 0.5;
     transition: all 0.07s ease;
     z-index: 2;
-  }
-
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
-      0 0 0 1px rgba(255, 255, 255, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.15);
-
-    &::before {
-      opacity: 0.9;
-    }
-
-    &::after {
-      opacity: 0.7;
-    }
   }
 `;
 
