@@ -58,13 +58,92 @@ const FAQContainer = styled.div`
 `;
 
 const FAQItem = styled.div`
+  background: linear-gradient(
+    135deg,
+    rgba(30, 30, 30, 0.95) 0%,
+    rgba(50, 50, 50, 0.9) 40%,
+    rgba(60, 60, 60, 0.85) 70%,
+    ${(props) => {
+      if (props.index === 0) return "rgba(0, 255, 255, 0.6)"; // cyan for first
+      if (props.index === 1) return "rgba(236, 0, 140, 0.6)"; // magenta for second
+      if (props.index === 2) return "rgba(255, 242, 0, 0.6)"; // yellow for third
+      return "rgba(0, 255, 255, 0.6)"; // default cyan
+    }}
+    100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   overflow: hidden;
-  transition: all 0.07s ease;
+  transition: all 0.07s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
   backdrop-filter: blur(11px);
   -webkit-backdrop-filter: blur(11px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 20px rgba(255, 255, 255, 0.05);
+
+  /* Top right gradient effect */
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      ellipse 80% 60% at 100% 0%,
+      ${(props) => {
+        if (props.index === 0) return "rgba(0, 255, 255, 0.3)";
+        if (props.index === 1) return "rgba(236, 0, 140, 0.3)";
+        if (props.index === 2) return "rgba(255, 242, 0, 0.3)";
+        return "rgba(0, 255, 255, 0.3)";
+      }}
+      0%,
+      ${(props) => {
+        if (props.index === 0) return "rgba(0, 200, 255, 0.15)";
+        if (props.index === 1) return "rgba(200, 0, 120, 0.15)";
+        if (props.index === 2) return "rgba(255, 200, 0, 0.15)";
+        return "rgba(0, 200, 255, 0.15)";
+      }}
+      40%,
+      transparent 80%
+    );
+    opacity: 0.6;
+    transition: all 0.07s ease;
+    z-index: 2;
+  }
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    z-index: 10;
+
+    /* Enhanced top right gradient on hover */
+    &::after {
+      opacity: 0.8;
+      background: radial-gradient(
+        ellipse 90% 70% at 100% 0%,
+        ${(props) => {
+          if (props.index === 0) return "rgba(0, 255, 255, 0.5)";
+          if (props.index === 1) return "rgba(236, 0, 140, 0.5)";
+          if (props.index === 2) return "rgba(255, 242, 0, 0.5)";
+          return "rgba(0, 255, 255, 0.5)";
+        }}
+        0%,
+        ${(props) => {
+          if (props.index === 0) return "rgba(0, 200, 255, 0.25)";
+          if (props.index === 1) return "rgba(200, 0, 120, 0.25)";
+          if (props.index === 2) return "rgba(255, 200, 0, 0.25)";
+          return "rgba(0, 200, 255, 0.25)";
+        }}
+        30%,
+        transparent 60%
+      );
+    }
+  }
 `;
 
 const Question = styled.button`
@@ -83,6 +162,7 @@ const Question = styled.button`
   transition: all 0.07s ease;
   font-family: "Inter", sans-serif;
   position: relative;
+  z-index: 3;
 
   &:focus {
     outline: none;
@@ -107,6 +187,8 @@ const Answer = styled.div`
     props.isOpen ? `1px solid ${colors.glass.borderLight}` : "none"};
   background: ${(props) =>
     props.isOpen ? colors.glass.secondary : "transparent"};
+  position: relative;
+  z-index: 3;
 `;
 
 const AnswerContent = styled.div`
@@ -172,7 +254,7 @@ const FAQs = () => {
 
         <FAQContainer>
           {faqs.map((faq, index) => (
-            <FAQItem key={index}>
+            <FAQItem key={index} index={index}>
               <Question
                 isOpen={openIndex === index}
                 onClick={() => toggleFAQ(index)}

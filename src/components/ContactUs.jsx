@@ -53,15 +53,66 @@ const SectionSubtitle = styled.p`
 `;
 
 const ContactForm = styled.form`
+  background: linear-gradient(
+    135deg,
+    rgba(30, 30, 30, 0.95) 0%,
+    rgba(50, 50, 50, 0.9) 40%,
+    rgba(60, 60, 60, 0.85) 70%,
+    rgba(0, 255, 255, 0.6) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   padding: 3rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  transition: all 0.07s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
   backdrop-filter: blur(11px);
   -webkit-backdrop-filter: blur(11px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 20px rgba(255, 255, 255, 0.05);
+
+  /* Top right gradient effect */
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      ellipse 80% 60% at 100% 0%,
+      rgba(0, 255, 255, 0.3) 0%,
+      rgba(0, 200, 255, 0.15) 40%,
+      transparent 80%
+    );
+    opacity: 0.6;
+    transition: all 0.07s ease;
+    z-index: 2;
+  }
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    z-index: 10;
+
+    /* Enhanced top right gradient on hover */
+    &::after {
+      opacity: 0.8;
+      background: radial-gradient(
+        ellipse 90% 70% at 100% 0%,
+        rgba(0, 255, 255, 0.5) 0%,
+        rgba(0, 200, 255, 0.25) 30%,
+        transparent 60%
+      );
+    }
+  }
 
   @media (max-width: 768px) {
     padding: 2rem;
@@ -88,6 +139,8 @@ const Label = styled.label`
   font-weight: 500;
   font-size: 0.9rem;
   font-family: "Inter", sans-serif;
+  position: relative;
+  z-index: 3;
 `;
 
 const Input = styled.input`
@@ -102,6 +155,8 @@ const Input = styled.input`
   font-family: "Inter", sans-serif;
   backdrop-filter: ${colors.blur.small};
   -webkit-backdrop-filter: ${colors.blur.small};
+  position: relative;
+  z-index: 3;
 
   &:focus {
     outline: none;
@@ -130,6 +185,8 @@ const TextArea = styled.textarea`
   font-family: "Inter", sans-serif;
   backdrop-filter: ${colors.blur.small};
   -webkit-backdrop-filter: ${colors.blur.small};
+  position: relative;
+  z-index: 3;
 
   &:focus {
     outline: none;
@@ -146,6 +203,8 @@ const TextArea = styled.textarea`
 
 const SubmitButtonWrapper = styled.div`
   margin-top: 1rem;
+  position: relative;
+  z-index: 3;
 `;
 const ContactInfo = styled.div`
   margin-top: 4rem;
