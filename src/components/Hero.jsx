@@ -235,7 +235,7 @@ const PartnerLogo = styled.div`
     background: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
-    
+
     img {
       filter: grayscale(0%) brightness(1);
     }
@@ -338,19 +338,19 @@ const Hero = () => {
           <PartnersText>Powered By Top Industry Experts</PartnersText>
           <PartnersGrid>
             <PartnerLogo>
-              <img src={require("../assets/adobe.png")} alt="Adobe" />
+              <img src={require("../assets/adobe-logo.png")} alt="Adobe" />
             </PartnerLogo>
             <PartnerLogo>
-              <img src={require("../assets/figma.png")} alt="Figma" />
+              <img src={require("../assets/figma-logo.png")} alt="Figma" />
             </PartnerLogo>
             <PartnerLogo>
-              <img src={require("../assets/webflow.png")} alt="Webflow" />
+              <img src={require("../assets/webflow-logo.png")} alt="Webflow" />
             </PartnerLogo>
             <PartnerLogo>
               <img src={require("../assets/shopify.png")} alt="Shopify" />
             </PartnerLogo>
             <PartnerLogo>
-              <img src={require("../assets/wordpress.png")} alt="WordPress" />
+              <img src={require("../assets/wordpress-logo.png")} alt="WordPress" />
             </PartnerLogo>
           </PartnersGrid>
         </PartnersSection>
