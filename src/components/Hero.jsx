@@ -212,14 +212,15 @@ const PartnersGrid = styled.div`
 `;
 
 const PartnerLogo = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: ${props => props.color || colors.textMuted};
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  transition: all 0.3s ease;
 
-  img {
-    height: 32px;
-    width: auto;
-    object-fit: contain;
+  &:hover {
+    color: ${props => props.color || colors.textSecondary};
+    transform: translateY(-2px);
   }
 `;
 
@@ -318,24 +319,11 @@ const Hero = () => {
         <PartnersSection>
           <PartnersText>Powered By Top Industry Experts</PartnersText>
           <PartnersGrid>
-            <PartnerLogo>
-              <img src={require("../assets/adobe-logo.png")} alt="Adobe" />
-            </PartnerLogo>
-            <PartnerLogo>
-              <img src={require("../assets/figma-logo.png")} alt="Figma" />
-            </PartnerLogo>
-            <PartnerLogo>
-              <img src={require("../assets/webflow-logo.png")} alt="Webflow" />
-            </PartnerLogo>
-            <PartnerLogo>
-              <img src={require("../assets/shopify.png")} alt="Shopify" />
-            </PartnerLogo>
-            <PartnerLogo>
-              <img
-                src={require("../assets/wordpress-logo.png")}
-                alt="WordPress"
-              />
-            </PartnerLogo>
+            <PartnerLogo color="#FF0000">Adobe</PartnerLogo>
+            <PartnerLogo color="#F24E1E">Figma</PartnerLogo>
+            <PartnerLogo color="#4353FF">Webflow</PartnerLogo>
+            <PartnerLogo color="#7AB55C">Shopify</PartnerLogo>
+            <PartnerLogo color="#21759B">WordPress</PartnerLogo>
           </PartnersGrid>
         </PartnersSection>
       </HeroContent>
