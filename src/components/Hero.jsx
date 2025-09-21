@@ -212,13 +212,33 @@ const PartnersGrid = styled.div`
 `;
 
 const PartnerLogo = styled.div`
-  color: ${colors.textMuted};
-  font-size: 1.2rem;
-  font-weight: 600;
-  font-family: "Inter", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  img {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(100%) brightness(0.7);
+    transition: all 0.3s ease;
+  }
 
   &:hover {
-    color: ${colors.textSecondary};
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    
+    img {
+      filter: grayscale(0%) brightness(1);
+    }
   }
 `;
 
@@ -317,11 +337,21 @@ const Hero = () => {
         <PartnersSection>
           <PartnersText>Powered By Top Industry Experts</PartnersText>
           <PartnersGrid>
-            <PartnerLogo>Adobe</PartnerLogo>
-            <PartnerLogo>Figma</PartnerLogo>
-            <PartnerLogo>Webflow</PartnerLogo>
-            <PartnerLogo>Shopify</PartnerLogo>
-            <PartnerLogo>WordPress</PartnerLogo>
+            <PartnerLogo>
+              <img src={require("../assets/adobe.png")} alt="Adobe" />
+            </PartnerLogo>
+            <PartnerLogo>
+              <img src={require("../assets/figma.png")} alt="Figma" />
+            </PartnerLogo>
+            <PartnerLogo>
+              <img src={require("../assets/webflow.png")} alt="Webflow" />
+            </PartnerLogo>
+            <PartnerLogo>
+              <img src={require("../assets/shopify.png")} alt="Shopify" />
+            </PartnerLogo>
+            <PartnerLogo>
+              <img src={require("../assets/wordpress.png")} alt="WordPress" />
+            </PartnerLogo>
           </PartnersGrid>
         </PartnersSection>
       </HeroContent>
