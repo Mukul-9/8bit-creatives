@@ -215,30 +215,11 @@ const PartnerLogo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
 
   img {
     height: 32px;
     width: auto;
     object-fit: contain;
-    filter: grayscale(100%) brightness(0.7);
-    transition: all 0.3s ease;
-  }
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-
-    img {
-      filter: grayscale(0%) brightness(1);
-    }
   }
 `;
 
@@ -350,7 +331,10 @@ const Hero = () => {
               <img src={require("../assets/shopify.png")} alt="Shopify" />
             </PartnerLogo>
             <PartnerLogo>
-              <img src={require("../assets/wordpress-logo.png")} alt="WordPress" />
+              <img
+                src={require("../assets/wordpress-logo.png")}
+                alt="WordPress"
+              />
             </PartnerLogo>
           </PartnersGrid>
         </PartnersSection>
