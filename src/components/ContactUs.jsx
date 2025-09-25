@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import colors from "../theme/colors";
 import { PrimaryButton } from "./buttons";
+import { saveContactMessage } from "../firebase/contactService";
 
 const ContactSection = styled.div`
   background: transparent;
@@ -131,84 +132,48 @@ const TextArea = styled.textarea`
 const SubmitButtonWrapper = styled.div`
   margin-top: 1rem;
 `;
-const ContactInfo = styled.div`
-  margin-top: 4rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-`;
 
-const InfoCard = styled.div`
-  background: rgba(30, 30, 30, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 2rem;
-  text-align: center;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(11px);
-  -webkit-backdrop-filter: blur(11px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-
-  &:hover {
-    border-color: ${colors.glass.border};
-    transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
-    background: ${colors.glass.buttonHover};
-  }
-`;
-
-const InfoIcon = styled.div`
-  width: 48px;
-  height: 48px;
-  background: ${colors.glass.primary};
-  border: 1px solid ${colors.glass.border};
+const LoadingSpinner = styled.div`
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1rem;
-  font-size: 1.5rem;
-  backdrop-filter: ${colors.blur.small};
-  -webkit-backdrop-filter: ${colors.blur.small};
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+  border-top-color: ${colors.magenta};
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 0.5rem;
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: ${colors.gradients.glow};
-    opacity: 0.3;
-    transition: opacity 0.3s ease;
-  }
-
-  &:hover {
-    transform: scale(1.1);
-
-    &::before {
-      opacity: 0.5;
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
     }
   }
 `;
 
-const InfoTitle = styled.h3`
-  color: ${colors.textPrimary};
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
+const SuccessMessage = styled.div`
+  background: rgba(0, 200, 0, 0.1);
+  border: 1px solid rgba(0, 200, 0, 0.3);
+  color: #00c800;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  text-align: center;
   font-family: "Inter", sans-serif;
+  backdrop-filter: blur(11px);
+  -webkit-backdrop-filter: blur(11px);
 `;
 
-const InfoText = styled.p`
-  color: ${colors.textSecondary};
-  line-height: 1.5;
-  font-size: 0.95rem;
+const ErrorMessage = styled.div`
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  color: #ff4444;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  text-align: center;
   font-family: "Inter", sans-serif;
+  backdrop-filter: blur(11px);
+  -webkit-backdrop-filter: blur(11px);
 `;
 
 const ContactUs = () => {
@@ -220,24 +185,56 @@ const ContactUs = () => {
     message: "",
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', or null
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+    // Clear status when user starts typing
+    if (submitStatus) {
+      setSubmitStatus(null);
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert("Thank you for your message! We'll get back to you soon.");
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      company: "",
-      message: "",
-    });
+    setIsLoading(true);
+    setSubmitStatus(null);
+
+    try {
+      // Save to Firebase
+      await saveContactMessage(formData);
+
+      // Show success message
+      setSubmitStatus("success");
+
+      // Reset form
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        company: "",
+        message: "",
+      });
+
+      // Clear success message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus(null);
+      }, 5000);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setSubmitStatus("error");
+
+      // Clear error message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus(null);
+      }, 5000);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -248,6 +245,19 @@ const ContactUs = () => {
         </SectionTitle>
 
         <ContactForm onSubmit={handleSubmit}>
+          {submitStatus === "success" && (
+            <SuccessMessage>
+              ✅ Thank you for your message! We'll get back to you soon.
+            </SuccessMessage>
+          )}
+
+          {submitStatus === "error" && (
+            <ErrorMessage>
+              ❌ Failed to send message. Please try again or contact us
+              directly.
+            </ErrorMessage>
+          )}
+
           <FormRow>
             <FormGroup>
               <Label htmlFor="firstName">First Name</Label>
@@ -316,8 +326,15 @@ const ContactUs = () => {
           </FormGroup>
 
           <SubmitButtonWrapper>
-            <PrimaryButton type="submit" size="large">
-              Send Message
+            <PrimaryButton type="submit" size="large" disabled={isLoading}>
+              {isLoading ? (
+                <>
+                  <LoadingSpinner />
+                  Sending...
+                </>
+              ) : (
+                "Send Message"
+              )}
             </PrimaryButton>
           </SubmitButtonWrapper>
         </ContactForm>

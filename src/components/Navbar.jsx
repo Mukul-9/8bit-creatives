@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import colors from "../theme/colors";
 import { PrimaryButton } from "./buttons";
@@ -30,10 +30,7 @@ const LogoContainer = styled.div`
 `;
 
 const LogoIcon = styled.img`
-  width: 40px;
-  height: 40px;
-  margin-right: 0.75rem;
-  border-radius: 6px;
+  height: 50px;
   object-fit: cover;
 `;
 
@@ -59,7 +56,7 @@ const NavLinks = styled.div`
 `;
 
 const NavLink = styled.a`
-  color: ${colors.textSecondary};
+  color: ${(props) => (props.isActive ? colors.magenta : colors.textSecondary)};
   font-size: 0.95rem;
   font-weight: 500;
   text-decoration: none;
@@ -71,16 +68,13 @@ const NavLink = styled.a`
   position: relative;
 
   &:hover {
-    color: ${colors.textPrimary};
-    background: ${colors.glass.buttonSecondary};
-    backdrop-filter: ${colors.blur.small};
-    -webkit-backdrop-filter: ${colors.blur.small};
+    color: ${colors.magenta};
     transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(0, 164, 228, 0.2);
   }
 
   &.active {
     color: ${colors.magenta};
+    font-weight: 600;
   }
 `;
 
@@ -91,31 +85,94 @@ const scrollToSection = (sectionId) => {
   }
 };
 
-const Navbar = () => (
-  <Nav>
-    <LogoContainer onClick={() => scrollToSection("hero")}>
-      <LogoIcon src="/8BIT LOGO 3.1.jpg" alt="8Bit Creatives Logo" />
-      <LogoText>8Bit Creatives</LogoText>
-    </LogoContainer>
+const Navbar = () => {
+  const [activeSection, setActiveSection] = useState("hero");
 
-    <NavLinks>
-      <NavLink onClick={() => scrollToSection("hero")} className="active">
-        Home
-      </NavLink>
-      <NavLink onClick={() => scrollToSection("creative-solutions")}>
-        Services
-      </NavLink>
-      <NavLink onClick={() => scrollToSection("browser-window")}>
-        Portfolio
-      </NavLink>
-      <NavLink onClick={() => scrollToSection("contact")}>Contact</NavLink>
-      <NavLink onClick={() => scrollToSection("faqs")}>FAQ</NavLink>
-    </NavLinks>
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = [
+        "hero",
+        "creative-solutions",
+        "browser-window",
+        "contact",
+        "faqs",
+      ];
+      const scrollPosition = window.scrollY + 100;
 
-    <PrimaryButton onClick={() => scrollToSection("contact")} size="medium">
-      Get Started
-    </PrimaryButton>
-  </Nav>
-);
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleNavClick = (sectionId) => {
+    setActiveSection(sectionId);
+    scrollToSection(sectionId);
+  };
+
+  return (
+    <Nav>
+      <LogoContainer onClick={() => handleNavClick("hero")}>
+        <LogoIcon src="/8BIT LOGO 3.1.png" alt="8Bit Creatives Logo" />
+        <LogoText>8Bit Creatives</LogoText>
+      </LogoContainer>
+
+      <NavLinks>
+        <NavLink
+          onClick={() => handleNavClick("hero")}
+          isActive={activeSection === "hero"}
+          className={activeSection === "hero" ? "active" : ""}
+        >
+          Home
+        </NavLink>
+        <NavLink
+          onClick={() => handleNavClick("creative-solutions")}
+          isActive={activeSection === "creative-solutions"}
+          className={activeSection === "creative-solutions" ? "active" : ""}
+        >
+          Services
+        </NavLink>
+        <NavLink
+          onClick={() => handleNavClick("browser-window")}
+          isActive={activeSection === "browser-window"}
+          className={activeSection === "browser-window" ? "active" : ""}
+        >
+          Portfolio
+        </NavLink>
+        <NavLink
+          onClick={() => handleNavClick("contact")}
+          isActive={activeSection === "contact"}
+          className={activeSection === "contact" ? "active" : ""}
+        >
+          Contact
+        </NavLink>
+        <NavLink
+          onClick={() => handleNavClick("faqs")}
+          isActive={activeSection === "faqs"}
+          className={activeSection === "faqs" ? "active" : ""}
+        >
+          FAQ
+        </NavLink>
+      </NavLinks>
+
+      <PrimaryButton onClick={() => handleNavClick("contact")} size="medium">
+        Get Started
+      </PrimaryButton>
+    </Nav>
+  );
+};
 
 export default Navbar;

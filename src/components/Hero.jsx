@@ -212,14 +212,14 @@ const PartnersGrid = styled.div`
 `;
 
 const PartnerLogo = styled.div`
-  color: ${props => props.color || colors.textMuted};
+  color: white;
   font-size: 1.2rem;
   font-weight: 600;
   font-family: "Inter", sans-serif;
   transition: all 0.3s ease;
 
   &:hover {
-    color: ${props => props.color || colors.textSecondary};
+    color: white;
     transform: translateY(-2px);
   }
 `;
@@ -319,11 +319,11 @@ const Hero = () => {
         <PartnersSection>
           <PartnersText>Powered By Top Industry Experts</PartnersText>
           <PartnersGrid>
-            <PartnerLogo color="#FF0000">Adobe</PartnerLogo>
-            <PartnerLogo color="#F24E1E">Figma</PartnerLogo>
-            <PartnerLogo color="#4353FF">Webflow</PartnerLogo>
-            <PartnerLogo color="#7AB55C">Shopify</PartnerLogo>
-            <PartnerLogo color="#21759B">WordPress</PartnerLogo>
+            <PartnerLogo>Adobe</PartnerLogo>
+            <PartnerLogo>Figma</PartnerLogo>
+            <PartnerLogo>Webflow</PartnerLogo>
+            <PartnerLogo>Shopify</PartnerLogo>
+            <PartnerLogo>WordPress</PartnerLogo>
           </PartnersGrid>
         </PartnersSection>
       </HeroContent>

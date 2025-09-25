@@ -226,54 +226,6 @@ const Copyright = styled.p`
   font-family: "Inter", sans-serif;
 `;
 
-const Attribution = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  color: white;
-  font-size: 0.8rem;
-  font-family: "Inter", sans-serif;
-
-  .heart {
-    color: ${colors.magenta};
-    font-size: 0.9rem;
-  }
-`;
-
-const Creator = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 0.5rem;
-  color: white;
-  font-size: 0.8rem;
-  font-family: "Inter", sans-serif;
-
-  @media (max-width: 768px) {
-    justify-content: center;
-  }
-`;
-
-const ProfilePic = styled.div`
-  width: 24px;
-  height: 24px;
-  background: ${colors.magenta};
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 0.7rem;
-  font-weight: bold;
-`;
-
-const Signature = styled.span`
-  font-family: "Kalam", cursive;
-  font-size: 0.9rem;
-  color: white;
-`;
-
 const Footer = () => {
   return (
     <FooterSection>
@@ -299,13 +251,16 @@ const Footer = () => {
             <div>
               <SectionTitle>Social</SectionTitle>
               <SocialLinks>
-                <SocialLink href="#">Instagram</SocialLink>
+                <SocialLink href="https://www.instagram.com/_8bitcreatives/">
+                  Instagram
+                </SocialLink>
                 <Dot />
-                <SocialLink href="#">Twitter/X</SocialLink>
+                <SocialLink href="https://x.com/8bitcreatives">
+                  Twitter/X
+                </SocialLink>
+                {/* <SocialLink href="#">YouTube</SocialLink>
                 <Dot />
-                <SocialLink href="#">YouTube</SocialLink>
-                <Dot />
-                <SocialLink href="#">Pinterest</SocialLink>
+                <SocialLink href="#">Pinterest</SocialLink> */}
               </SocialLinks>
             </div>
           </MiddleColumn>

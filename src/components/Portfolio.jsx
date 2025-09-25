@@ -435,6 +435,25 @@ const BrowserWindow = styled.div`
   overflow: hidden;
   margin: 3rem 0;
   position: relative;
+
+  /* Cyan and Magenta Gradient Overlay */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 164, 228, 0.08) 0%,
+      rgba(236, 0, 140, 0.06) 50%,
+      rgba(0, 164, 228, 0.04) 100%
+    );
+    border-radius: 16px;
+    pointer-events: none;
+    z-index: 1;
+  }
 `;
 
 const BrowserHeader = styled.div`
@@ -587,6 +606,28 @@ const BrowserContent = styled.div`
   position: relative;
   z-index: 2;
   overflow: hidden;
+
+  /* Additional subtle gradient for content area */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        ellipse at top left,
+        rgba(0, 164, 228, 0.05) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at bottom right,
+        rgba(236, 0, 140, 0.04) 0%,
+        transparent 50%
+      );
+    pointer-events: none;
+    z-index: 1;
+  }
 `;
 
 const PinterestMatrix = styled.div`
@@ -595,6 +636,8 @@ const PinterestMatrix = styled.div`
   grid-auto-rows: 400px;
   gap: 2rem;
   padding: 3rem;
+  position: relative;
+  z-index: 4;
 
   @media (max-width: 768px) {
     grid-auto-rows: 500px;
