@@ -210,15 +210,17 @@ const ContactUs = () => {
       const body = `
 Name: ${formData.firstName} ${formData.lastName}
 Email: ${formData.email}
-Company: ${formData.company || 'Not provided'}
+Company: ${formData.company || "Not provided"}
 
 Message:
 ${formData.message}
       `.trim();
-      
+
       // Open email client
-      const mailtoLink = `mailto:designers@8bitcreatives.design?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.open(mailtoLink, '_blank');
+      const mailtoLink = `mailto:designers@8bitcreatives.design?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
+      window.open(mailtoLink, "_blank");
 
       // Show success message
       setSubmitStatus("success");
