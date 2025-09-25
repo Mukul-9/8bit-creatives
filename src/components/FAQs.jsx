@@ -36,14 +36,14 @@ const SectionTitle = styled.h2`
   }
 `;
 
-const SectionSubtitle = styled.p`
-  font-size: 1.1rem;
-  color: ${colors.textSecondary};
-  text-align: center;
-  margin-bottom: 3rem;
-  line-height: 1.6;
-  font-family: "Inter", sans-serif;
-`;
+// const SectionSubtitle = styled.p`
+//   font-size: 1.1rem;
+//   color: ${colors.textSecondary};
+//   text-align: center;
+//   margin-bottom: 3rem;
+//   line-height: 1.6;
+//   font-family: "Inter", sans-serif;
+// `;
 
 const FAQContainer = styled.div`
   display: flex;

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import colors from "../theme/colors";
-import { PrimaryButton } from "./buttons";
+// import { PrimaryButton } from "./buttons";
 
 const FooterSection = styled.footer`
   background: rgba(0, 0, 0, 0.9);
@@ -71,45 +71,45 @@ const CTAHeadline = styled.h2`
   }
 `;
 
-const CTAButton = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-`;
+// const CTAButton = styled.div`
+//   display: flex;
+//   align-items: center;
+//   gap: 1rem;
+// `;
 
-const Button = styled.button`
-  background: rgba(40, 40, 40, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
-  padding: 0.8rem 1.5rem;
-  color: white;
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: "Inter", sans-serif;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+// const Button = styled.button`
+//   background: rgba(40, 40, 40, 0.9);
+//   border: 1px solid rgba(255, 255, 255, 0.2);
+//   border-radius: 8px;
+//   padding: 0.8rem 1.5rem;
+//   color: white;
+//   font-size: 0.9rem;
+//   font-weight: 500;
+//   cursor: pointer;
+//   transition: all 0.3s ease;
+//   font-family: "Inter", sans-serif;
+//   backdrop-filter: blur(10px);
+//   -webkit-backdrop-filter: blur(10px);
 
-  &:hover {
-    background: rgba(50, 50, 50, 0.9);
-    border-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
-  }
-`;
+//   &:hover {
+//     background: rgba(50, 50, 50, 0.9);
+//     border-color: rgba(255, 255, 255, 0.3);
+//     transform: translateY(-2px);
+//   }
+// `;
 
-const PlusIcon = styled.div`
-  width: 20px;
-  height: 20px;
-  background: ${colors.magenta};
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 0.8rem;
-  font-weight: bold;
-`;
+// const PlusIcon = styled.div`
+//   width: 20px;
+//   height: 20px;
+//   background: ${colors.magenta};
+//   border-radius: 4px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   color: white;
+//   font-size: 0.8rem;
+//   font-weight: bold;
+// `;
 
 const MiddleColumn = styled.div`
   display: flex;

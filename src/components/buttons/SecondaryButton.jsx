@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import colors from "../../theme/colors";
+// import colors from "../../theme/colors";
 
 const StyledSecondaryButton = styled.button`
   background: linear-gradient(
