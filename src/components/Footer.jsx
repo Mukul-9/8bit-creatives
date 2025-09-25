@@ -131,19 +131,19 @@ const SectionTitle = styled.h3`
   font-family: "Inter", sans-serif;
 `;
 
-const SectionContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-`;
+// const SectionContent = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   gap: 0.5rem;
+// `;
 
-const Address = styled.p`
-  color: white;
-  font-size: 0.9rem;
-  line-height: 1.4;
-  margin: 0;
-  font-family: "Inter", sans-serif;
-`;
+// const Address = styled.p`
+//   color: white;
+//   font-size: 0.9rem;
+//   line-height: 1.4;
+//   margin: 0;
+//   font-family: "Inter", sans-serif;
+// `;
 
 const SocialLinks = styled.div`
   display: flex;
@@ -241,14 +241,6 @@ const Footer = () => {
 
           <MiddleColumn>
             <div>
-              <SectionTitle>Location</SectionTitle>
-              <SectionContent>
-                <Address>
-                  16/2 Municipal Office Lane, Kolkata, West Bengal, India
-                </Address>
-              </SectionContent>
-            </div>
-            <div>
               <SectionTitle>Social</SectionTitle>
               <SocialLinks>
                 <SocialLink href="https://www.instagram.com/_8bitcreatives/">
@@ -269,7 +261,6 @@ const Footer = () => {
             <div>
               <SectionTitle>Contact</SectionTitle>
               <ContactInfo>
-                <ContactItem>+91 9051628858</ContactItem>
                 <ContactItem>designers@8bitcreatives.design</ContactItem>
               </ContactInfo>
             </div>
