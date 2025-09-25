@@ -3,12 +3,11 @@
   publish = "build"
 
 [build.environment]
+  CI = "false"
   NODE_VERSION = "18"
+  SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-[build.environment]
-  SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
