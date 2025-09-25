@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import colors from "../theme/colors";
 import { PrimaryButton } from "./buttons";
-import { saveContactMessage } from "../firebase/contactService";
+// Firebase removed - using simple email solution
 
 const ContactSection = styled.div`
   background: transparent;
@@ -205,8 +205,20 @@ const ContactUs = () => {
     setSubmitStatus(null);
 
     try {
-      // Save to Firebase
-      await saveContactMessage(formData);
+      // Create mailto link with form data
+      const subject = `Contact from ${formData.firstName} ${formData.lastName}`;
+      const body = `
+Name: ${formData.firstName} ${formData.lastName}
+Email: ${formData.email}
+Company: ${formData.company || 'Not provided'}
+
+Message:
+${formData.message}
+      `.trim();
+      
+      // Open email client
+      const mailtoLink = `mailto:designers@8bitcreatives.design?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.open(mailtoLink, '_blank');
 
       // Show success message
       setSubmitStatus("success");

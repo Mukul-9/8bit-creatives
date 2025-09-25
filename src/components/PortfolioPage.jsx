@@ -357,9 +357,9 @@ const PortfolioPage = () => {
     }, 500);
   };
 
-  const handleBackClick = () => {
-    window.history.back();
-  };
+  // const handleBackClick = () => {
+  //   window.history.back();
+  // };
 
   const handleImageClick = (image) => {
     setSelectedImage(image);
